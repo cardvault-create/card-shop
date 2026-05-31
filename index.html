@@ -6,17 +6,23 @@
 
 <style>
 
-body{
+*{
 margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
 background:#050816;
 color:white;
-font-family:Arial,sans-serif;
 }
 
 header{
 padding:20px;
 text-align:center;
 background:#0b1025;
+border-bottom:1px solid #00bfff;
 }
 
 .logo{
@@ -28,20 +34,64 @@ color:#00bfff;
 .hero{
 text-align:center;
 padding:80px 20px;
+background:linear-gradient(135deg,#0b1025,#111d4a);
 }
 
 .hero h1{
-font-size:40px;
+font-size:42px;
 color:#00bfff;
+margin-bottom:15px;
+}
+
+.hero p{
+font-size:18px;
+margin-bottom:25px;
 }
 
 .btn{
 display:inline-block;
-padding:15px 30px;
-background:#00bfff;
+padding:15px 35px;
+background:linear-gradient(90deg,#00bfff,#8a2be2);
 color:white;
 text-decoration:none;
-border-radius:10px;
+border-radius:12px;
+font-weight:bold;
+}
+
+.games{
+padding:40px 20px;
+}
+
+.games h2{
+text-align:center;
+margin-bottom:25px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.card{
+background:#111827;
+padding:30px 10px;
+border-radius:15px;
+text-align:center;
+border:1px solid #1f2937;
+font-weight:bold;
+}
+
+.card:hover{
+transform:scale(1.03);
+transition:.3s;
+}
+
+footer{
+margin-top:30px;
+padding:20px;
+text-align:center;
+background:#0b1025;
 }
 
 </style>
@@ -55,10 +105,35 @@ border-radius:10px;
 
 <section class="hero">
 <h1>PREMIUM ALL GAMES TOP-UP</h1>
-<p>Fast • Secure • Instant Top-Up</p>
-<br>
+<p>Fast • Secure • Instant Gaming Top-Ups</p>
 <a class="btn" href="#">TOP UP NOW</a>
 </section>
+
+<section class="games">
+
+<h2>Popular Games</h2>
+
+<div class="grid">
+
+<div class="card">🔥 Free Fire</div>
+
+<div class="card">🎮 BGMI</div>
+
+<div class="card">⚔ PUBG Mobile</div>
+
+<div class="card">💎 Mobile Legends</div>
+
+<div class="card">🎯 Valorant</div>
+
+<div class="card">🕹 Roblox</div>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 PremiumAllGamesToP-UP
+</footer>
 
 </body>
 </html>
