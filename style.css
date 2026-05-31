@@ -120,3 +120,92 @@ width:90%;
 max-width:350px;
 }
 }
+
+.games,
+.stats,
+.order,
+.features{
+padding:60px 20px;
+}
+
+.games h2,
+.order h2,
+.features h2{
+text-align:center;
+margin-bottom:25px;
+}
+
+.grid{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:15px;
+}
+
+.card,
+.stat-card,
+.feature-box{
+background:#111827;
+padding:20px;
+border-radius:15px;
+text-align:center;
+border:1px solid rgba(0,191,255,.15);
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:15px;
+}
+
+.stat-card h3{
+color:#00bfff;
+font-size:28px;
+margin-bottom:10px;
+}
+
+.order form{
+max-width:500px;
+margin:auto;
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.order input,
+.order select,
+.order button{
+padding:15px;
+border:none;
+border-radius:12px;
+font-size:16px;
+}
+
+.order input,
+.order select{
+background:#111827;
+color:white;
+}
+
+.order button{
+background:linear-gradient(90deg,#00c6ff,#7b2ff7);
+color:white;
+font-weight:bold;
+}
+
+footer{
+padding:25px;
+text-align:center;
+background:#0b1025;
+}
+
+@media(max-width:768px){
+
+.grid{
+grid-template-columns:1fr;
+}
+
+.stats{
+grid-template-columns:1fr;
+}
+
+}
