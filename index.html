@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>GOD X MODS | Adventure Premium Terminal</title>
+    <title>BeStChEat | Premium Card Shop</title>
     <style>
         * {
             margin: 0;
@@ -175,13 +175,15 @@
             100% { filter: hue-rotate(360deg); }
         }
 
-        /* Header - TEXT FIXED: VISIBLE */
+        /* Header - TEXT CHANGED */
         .mods-badge {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 28px;
             animation: slideDown 0.5s ease;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         @keyframes slideDown {
             0% { opacity: 0; transform: translateY(-20px); }
@@ -189,8 +191,8 @@
         }
 
         .godx {
-            font-size: 12px;
-            letter-spacing: 3px;
+            font-size: 11px;
+            letter-spacing: 1px;
             color: #ffdfaa;
             font-weight: 600;
             text-transform: uppercase;
@@ -204,6 +206,7 @@
             font-weight: 700;
             color: #0a0a19;
             animation: tagPulse 1.5s infinite;
+            white-space: nowrap;
         }
         @keyframes tagPulse {
             0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
@@ -238,7 +241,7 @@
             100% { opacity: 1; transform: translateX(0); }
         }
 
-        /* Credit Card - TEXT FIXED: VISIBLE */
+        /* Credit Card */
         .card-mock {
             background: linear-gradient(135deg, rgba(20, 15, 45, 0.9), rgba(10, 8, 25, 0.95));
             border-radius: 36px;
@@ -317,7 +320,7 @@
             color: #ffd700;
         }
 
-        /* Cards Selector - TEXT FIXED: VISIBLE */
+        /* Cards Selector */
         .cards-selector {
             display: flex;
             gap: 14px;
@@ -365,7 +368,7 @@
             transition: all 0.2s;
         }
 
-        /* Buy Button - Epic Animated */
+        /* Buy Button */
         .buy-btn {
             width: 100%;
             background: linear-gradient(135deg, #ffd700, #ff6b35, #ff00ff);
@@ -413,7 +416,7 @@
             to { opacity: 1; }
         }
 
-        /* Toast Animation */
+        /* Toast */
         .toast-msg {
             position: fixed;
             bottom: 30px;
@@ -440,6 +443,8 @@
             .card-number { font-size: 18px; }
             .main-title { font-size: 26px; }
             .toast-msg { font-size: 12px; white-space: normal; width: 85%; text-align: center; }
+            .godx { font-size: 8px; }
+            .premium-tag { font-size: 9px; padding: 4px 10px; white-space: normal; text-align: center; }
         }
     </style>
 </head>
@@ -460,8 +465,8 @@
 <!-- Main Card -->
 <div class="terminal-card">
     <div class="mods-badge">
-        <span class="godx">⚡ GOD X MODS PREMIUM ⚡</span>
-        <span class="premium-tag">✦ PREMIUM VT ✦</span>
+        <span class="godx">🔥 BeStChEat CarD AnD PlaY StoRe ReDeeM CodE ShoP 🔥</span>
+        <span class="premium-tag">✦ PREMIUM CARD SHOP ✦</span>
     </div>
     <div class="main-title">VIRTUAL TERMINAL</div>
     <div class="sub">secure • instant • epic</div>
@@ -532,7 +537,7 @@
 
     // UPI Configuration
     const UPI_ID = "kartikrawat6266@okhdfcbank";
-    const MERCHANT_NAME = "GODXMODS";
+    const MERCHANT_NAME = "BESTCHEAT";
     const CURRENCY = "INR";
 
     let currentAmount = 150;
