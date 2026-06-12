@@ -500,7 +500,6 @@
         }
         .code-hidden {
             filter: blur(5px);
-            cursor: pointer;
         }
         .code-revealed {
             filter: blur(0);
@@ -734,14 +733,14 @@
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // Master Cards Data - 5 Cards
+    // Master Cards Data - 5 Cards (CVV hidden with •••)
     const masterCards = [
         {
             id: 1,
             type: "MASTERCARD",
             number: "5412 7582 9314 XXXX",
             expiry: "12/28",
-            cvv: "123",
+            cvv: "•••",
             balance: 1200,
             price: 100,
             name: "ROHIT SHARMA",
@@ -752,7 +751,7 @@
             type: "MASTERCARD",
             number: "5034 2430 5309 XXXX",
             expiry: "11/27",
-            cvv: "456",
+            cvv: "•••",
             balance: 2450,
             price: 250,
             name: "JOHNSON CARDER",
@@ -763,7 +762,7 @@
             type: "MASTERCARD",
             number: "4532 7890 1234 XXXX",
             expiry: "09/28",
-            cvv: "789",
+            cvv: "•••",
             balance: 5000,
             price: 500,
             name: "SNEHA P.",
@@ -774,7 +773,7 @@
             type: "MASTERCARD",
             number: "3602 7135 8913 XXXX",
             expiry: "01/30",
-            cvv: "321",
+            cvv: "•••",
             balance: 10000,
             price: 1000,
             name: "DIVYA R.",
@@ -785,7 +784,7 @@
             type: "MASTERCARD",
             number: "5123 4567 8901 XXXX",
             expiry: "03/29",
-            cvv: "654",
+            cvv: "•••",
             balance: 20000,
             price: 1500,
             name: "KARTIK R.",
@@ -793,7 +792,7 @@
         }
     ];
 
-    // Play Store Redeem Codes Data - 5 Cards (Code hidden until payment)
+    // Play Store Redeem Codes Data - 5 Cards (Payment status per card)
     const playstoreCards = [
         {
             id: 1,
@@ -854,6 +853,7 @@
 
     let currentCategory = "master";
     let currentCards = masterCards;
+    let paymentStatus = {}; // Store payment status per card
 
     const UPI_ID = "kartikrawat6266@okhdfcbank";
     const MERCHANT_NAME = "BESTCHEAT";
@@ -866,12 +866,12 @@
     const toastMsg = document.getElementById('toastMsg');
     const catBtns = document.querySelectorAll('.cat-btn');
 
-    // Reveal Code After Payment (Master Card doesn't need code reveal)
-    function revealCodeAfterPayment(cardId) {
+    // Mark card as paid and reveal code
+    function markAsPaid(cardId) {
         const card = playstoreCards.find(c => c.id === cardId);
         if (card) {
             card.isPaid = true;
-            // Re-render to show code
+            // Re-render only the affected card to show code
             renderAllCards();
             // Keep scroll position
             setTimeout(() => {
@@ -941,14 +941,12 @@
     // Render All Cards
     function renderAllCards() {
         cardsWrapper.innerHTML = '';
-        currentCards.forEach((card, index) => {
+        currentCards.forEach((card) => {
             const cardDiv = document.createElement('div');
             cardDiv.className = 'card-item';
             cardDiv.innerHTML = renderCardHTML(card);
             cardsWrapper.appendChild(cardDiv);
         });
-        
-        // Update dots
         updateDots();
     }
 
@@ -986,8 +984,6 @@
         if (category === "master") {
             currentCards = masterCards;
         } else {
-            // Reset payment status when switching to playstore
-            playstoreCards.forEach(card => card.isPaid = false);
             currentCards = playstoreCards;
         }
         
@@ -1015,7 +1011,7 @@
         showToast(`📦 Added to cart: ${card.type} - ₹${card.price}`);
     }
     
-    // Buy Now
+    // Buy Now - Payment process
     function buyNow(cardId, category) {
         const card = currentCards.find(c => c.id === cardId);
         
@@ -1029,12 +1025,19 @@
         anchor.click();
         document.body.removeChild(anchor);
         
-        // Simulate payment success after 2 seconds (in real scenario, this would be after actual payment)
+        // Simulate payment success after 2 seconds
         setTimeout(() => {
             if (category === "playstore") {
-                // Reveal the code after payment
-                revealCodeAfterPayment(cardId);
-                showToast(`✅ Payment successful! Your redeem code has been revealed!`, 4000);
+                // Mark this specific card as paid
+                const playCard = playstoreCards.find(c => c.id === cardId);
+                if (playCard && !playCard.isPaid) {
+                    playCard.isPaid = true;
+                    // Re-render to show revealed code
+                    renderAllCards();
+                    showToast(`✅ Payment successful! Your redeem code has been revealed!`, 4000);
+                } else {
+                    showToast(`✅ Payment successful! Your redeem code: ${playCard.redeemCodeFull}`, 4000);
+                }
             } else {
                 showToast(`💰 Payment request for ₹${card.price}. Open UPI app to complete!`, 4000);
             }
