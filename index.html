@@ -586,6 +586,92 @@
             display: none;
         }
 
+        /* Payment Modal Styles */
+        .payment-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            backdrop-filter: blur(15px);
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+            padding: 20px;
+        }
+        .payment-modal-content {
+            background: linear-gradient(135deg, #1a1a3e, #0a0a2a);
+            border-radius: 40px;
+            padding: 25px;
+            max-width: 380px;
+            width: 100%;
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            animation: modalFadeIn 0.3s ease;
+        }
+        @keyframes modalFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .app-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 20px;
+        }
+        .app-btn {
+            background: linear-gradient(135deg, #2a2a5a, #1a1a3a);
+            border: 1px solid rgba(255, 215, 0, 0.3);
+            padding: 12px 20px;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: 0.2s;
+        }
+        .app-btn:active {
+            transform: scale(0.95);
+        }
+        .upi-id-box {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 50px;
+            padding: 12px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        .upi-id-text {
+            font-family: monospace;
+            font-size: 16px;
+            font-weight: 800;
+            color: #ffd700;
+        }
+        .copy-btn {
+            background: rgba(255, 215, 0, 0.2);
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 11px;
+            font-weight: 600;
+            color: #ffdfaa;
+            cursor: pointer;
+            margin-top: 8px;
+        }
+        .close-modal-btn {
+            background: rgba(255, 100, 100, 0.2);
+            border: 1px solid rgba(255, 100, 100, 0.4);
+            padding: 10px 20px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 600;
+            color: #ff8888;
+            cursor: pointer;
+            width: 100%;
+        }
+
         @media (max-width: 550px) {
             .terminal-card { padding: 16px 16px 22px; max-width: 400px; }
             .card-number { font-size: 16px; letter-spacing: 1px; }
@@ -600,6 +686,8 @@
             .email-input { font-size: 10px; padding: 8px 12px; }
             .buy-now { font-size: 16px; padding: 12px 0; }
             .animated-header-box { padding: 12px 15px; }
+            .app-btn { padding: 8px 15px; font-size: 12px; }
+            .upi-id-text { font-size: 13px; }
         }
     </style>
 </head>
@@ -703,11 +791,11 @@
     </div>
 
     <div class="scroll-indicator">
-        <span style="font-size: 11px; color: #8a94b5;">👆 Swipe Left/Right To See More CardS ⏩</span>
+        <span style="font-size: 11px; color: #8a94b5;">👆 Swipe Left/Right To See More Cards ⏩</span>
         <div class="scroll-dots" id="scrollDots"></div>
     </div>
 
-    <div class="upi-note">⚡ Click Buy → Auto Open GPay / PhonePe / PayTM ⚡</div>
+    <div class="upi-note">⚡ Click Buy → Auto Open GPay / PhonePe / PayTM / FamPay ⚡</div>
 </div>
 
 <div id="toastMsg" class="toast-msg"></div>
@@ -715,7 +803,7 @@
 <script>
     let emailInputs = {};
 
-    // ========== MASTER CARDS WITH SHORT INDIAN NAMES (Example: Neha V.) ==========
+    // ========== MASTER CARDS ==========
     const masterCards = [
         { id: 1, type: "MASTERCARD", number: "5412 7582 9314 XXXX", expiry: "12/28", cvv: "•••", balance: 1200, price: 100, name: "RAJESH K.", category: "master" },
         { id: 2, type: "MASTERCARD", number: "5034 2430 5309 XXXX", expiry: "11/27", cvv: "•••", balance: 2450, price: 250, name: "PRIYA S.", category: "master" },
@@ -725,7 +813,7 @@
         { id: 6, type: "MASTERCARD", number: "6011 2345 6789 XXXX", expiry: "06/31", cvv: "•••", balance: 20000, price: 2000, name: "ANJALI R.", category: "master" }
     ];
 
-    // PLAY STORE CARDS - Partially Hidden Codes
+    // ========== PLAY STORE CARDS ==========
     const playstoreCards = [
         { id: 1, type: "PLAY STORE", redeemCodeShow: "ABCD-XXXX-XXXX-XXXX", fullCode: "ABCD-EFGH-IJKL-MNOP", balance: 1200, price: 100, category: "playstore" },
         { id: 2, type: "PLAY STORE", redeemCodeShow: "QRST-XXXX-XXXX-XXXX", fullCode: "QRST-UVWX-YZ12-3456", balance: 2450, price: 250, category: "playstore" },
@@ -737,9 +825,12 @@
 
     let currentCategory = "master";
     let currentCards = masterCards;
+    let pendingAmount = 0;
+    let pendingCardId = null;
+    let pendingCategory = null;
 
     const UPI_ID = "kartikrawat6266@okhdfcbank";
-    const MERCHANT_NAME = "BESTCHEAT";
+    const MERCHANT_NAME = "CARDVAULT";
     const CURRENCY = "INR";
 
     const cardsWrapper = document.getElementById('cardsWrapper');
@@ -756,6 +847,103 @@
         return emailInputs[cardId] || '';
     }
 
+    // ========== SMART UPI PAYMENT SYSTEM ==========
+    function openUpiApp(amount) {
+        const upiUrl = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount}&cu=${CURRENCY}&tn=Premium%20Card%20Purchase`;
+        
+        const anchor = document.createElement('a');
+        anchor.href = upiUrl;
+        anchor.style.display = 'none';
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+        
+        setTimeout(() => {
+            showPaymentOptions(amount);
+        }, 1500);
+    }
+
+    function showPaymentOptions(amount) {
+        const modal = document.createElement('div');
+        modal.className = 'payment-modal';
+        modal.id = 'paymentModal';
+        modal.innerHTML = `
+            <div class="payment-modal-content">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 24px; font-weight: 800; background: linear-gradient(135deg, #ffd700, #ff6b35); -webkit-background-clip: text; background-clip: text; color: transparent;">💳 SELECT UPI APP</div>
+                    <div style="font-size: 12px; color: #a8b2d1; margin-top: 5px;">Choose your preferred payment app</div>
+                </div>
+                <div class="app-buttons">
+                    <button class="app-btn" onclick="openSpecificApp('phonepe', ${amount})">📱 PhonePe</button>
+                    <button class="app-btn" onclick="openSpecificApp('gpay', ${amount})">💰 Google Pay</button>
+                    <button class="app-btn" onclick="openSpecificApp('paytm', ${amount})">🎯 Paytm</button>
+                    <button class="app-btn" onclick="openSpecificApp('fampay', ${amount})">👨‍👩‍👧 FamPay</button>
+                    <button class="app-btn" onclick="openSpecificApp('amazonpay', ${amount})">📦 Amazon Pay</button>
+                    <button class="app-btn" onclick="openSpecificApp('bhim', ${amount})">🇮🇳 BHIM</button>
+                </div>
+                <div style="text-align: center; margin-top: 15px;">
+                    <div class="upi-id-box">
+                        <div style="font-size: 11px; color: #8a94b5;">UPI ID (Copy & Pay manually)</div>
+                        <div class="upi-id-text">${UPI_ID}</div>
+                        <button class="copy-btn" onclick="copyUPI()">📋 Copy UPI ID</button>
+                    </div>
+                    <button class="close-modal-btn" onclick="closePaymentModal()">✕ Close</button>
+                </div>
+            </div>
+        `;
+        document.body.appendChild(modal);
+    }
+
+    function openSpecificApp(app, amount) {
+        let appUrl = '';
+        switch(app) {
+            case 'phonepe':
+                appUrl = `phonepe://pay?pa=${UPI_ID}&am=${amount}&pn=${MERCHANT_NAME}`;
+                break;
+            case 'gpay':
+                appUrl = `gpay://pay?pa=${UPI_ID}&am=${amount}&pn=${MERCHANT_NAME}`;
+                break;
+            case 'paytm':
+                appUrl = `paytmmp://pay?pa=${UPI_ID}&am=${amount}`;
+                break;
+            case 'fampay':
+                appUrl = `fampay://pay?pa=${UPI_ID}&am=${amount}&pn=${MERCHANT_NAME}`;
+                break;
+            case 'amazonpay':
+                appUrl = `amazonpay://pay?pa=${UPI_ID}&am=${amount}`;
+                break;
+            case 'bhim':
+                appUrl = `bhim://pay?pa=${UPI_ID}&am=${amount}&pn=${MERCHANT_NAME}`;
+                break;
+            default:
+                appUrl = `upi://pay?pa=${UPI_ID}&am=${amount}&pn=${MERCHANT_NAME}&cu=INR`;
+        }
+        
+        const anchor = document.createElement('a');
+        anchor.href = appUrl;
+        anchor.style.display = 'none';
+        document.body.appendChild(anchor);
+        anchor.click();
+        document.body.removeChild(anchor);
+        
+        showToast(`📱 Opening ${app.toUpperCase()}...`, 1500);
+        
+        setTimeout(() => {
+            closePaymentModal();
+        }, 500);
+    }
+
+    function copyUPI() {
+        navigator.clipboard.writeText(UPI_ID);
+        showToast(`✅ UPI ID copied: ${UPI_ID}`);
+    }
+
+    function closePaymentModal() {
+        const modal = document.getElementById('paymentModal');
+        if (modal) modal.remove();
+    }
+
+    // ========== RENDER CARD HTML ==========
     function renderCardHTML(card) {
         if (card.category === "playstore") {
             const savedEmail = getEmail(card.id);
@@ -784,7 +972,7 @@
                         <span>⚡ Instant Delivery</span>
                         <span>🔒 Secure Code</span>
                     </div>
-                    <button class="buy-now" onclick="buyNow(${card.id}, '${card.category}')">🪙 BUY NOW — ₹${card.price} 💳</button>
+                    <button class="buy-now" onclick="buyNow(${card.id}, '${card.category}')">💳 BUY NOW — ₹${card.price} 💳</button>
                 </div>
             `;
         } else {
@@ -801,7 +989,7 @@
                     </div>
                     <div class="card-balance">💰 BALANCE: ₹${card.balance.toLocaleString()}</div>
                     <div class="card-name">👤 ${card.name}</div>
-                    <button class="buy-now" onclick="buyNow(${card.id}, '${card.category}')">🪙 BUY NOW — ₹${card.price} 💳</button>
+                    <button class="buy-now" onclick="buyNow(${card.id}, '${card.category}')">💳 BUY NOW — ₹${card.price} 💳</button>
                 </div>
             `;
         }
@@ -852,8 +1040,10 @@
         setTimeout(() => { if (swipeContainer) { swipeContainer.scrollLeft = 0; updateActiveDot(); } }, 100);
     }
 
+    // ========== BUY NOW FUNCTION WITH SMART PAYMENT ==========
     function buyNow(cardId, category) {
         const card = currentCards.find(c => c.id === cardId);
+        
         if (category === "playstore") {
             const email = getEmail(cardId);
             if (!email || !email.includes('@') || !email.includes('.')) {
@@ -864,22 +1054,20 @@
         } else {
             showToast(`💎 Processing payment for ₹${card.price}... Opening UPI app`);
         }
-        const upiUrl = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${card.price}&cu=${CURRENCY}&tn=Premium%20Card%20Purchase`;
-        const anchor = document.createElement('a');
-        anchor.href = upiUrl;
-        anchor.style.display = 'none';
-        document.body.appendChild(anchor);
-        anchor.click();
-        document.body.removeChild(anchor);
+        
+        // Open UPI payment
+        openUpiApp(card.price);
+        
+        // After payment success simulation
         setTimeout(() => {
             if (category === "playstore") {
                 const email = getEmail(cardId);
                 const playCard = playstoreCards.find(c => c.id === cardId);
                 showToast(`✅ Payment successful! Full redeem code (${playCard.fullCode}) will be sent to ${email} within 5 minutes.`, 6000);
             } else {
-                showToast(`💰 Payment request for ₹${card.price}. Open UPI app to complete!`, 4000);
+                showToast(`💰 Payment request sent for ₹${card.price}. Complete payment in UPI app!`, 4000);
             }
-        }, 2000);
+        }, 3000);
     }
 
     function showToast(msg, duration = 4000) {
@@ -888,11 +1076,15 @@
         setTimeout(() => { toastMsg.style.display = 'none'; }, duration);
     }
 
-    if (swipeContainer) swipeContainer.addEventListener('scroll', updateActiveDot);
-    catBtns.forEach(btn => btn.addEventListener('click', () => switchCategory(btn.dataset.cat)));
-
+    // Make functions global for onclick
     window.updateEmail = updateEmail;
     window.buyNow = buyNow;
+    window.openSpecificApp = openSpecificApp;
+    window.copyUPI = copyUPI;
+    window.closePaymentModal = closePaymentModal;
+
+    if (swipeContainer) swipeContainer.addEventListener('scroll', updateActiveDot);
+    catBtns.forEach(btn => btn.addEventListener('click', () => switchCategory(btn.dataset.cat)));
 
     renderAllCards();
 </script>
