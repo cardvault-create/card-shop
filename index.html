@@ -127,63 +127,61 @@
             50% { opacity: 1; }
         }
 
-        /* ========== 🌠 STAR STICKERS (NICHE SIDE) ========== */
+        /* ========== 🌠 STAR STICKERS (NICHE SIDE - 8 STICKERS) ========== */
         .star-sticker {
             position: fixed;
-            bottom: 5%;
-            left: 5%;
-            font-size: 45px;
+            font-size: 32px;
             animation: starSpin 4s ease-in-out infinite;
             z-index: 1;
-            filter: drop-shadow(0 0 10px #ffd700);
+            filter: drop-shadow(0 0 8px #ffd700);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .star-sticker:hover {
+            transform: scale(1.2);
         }
         @keyframes starSpin {
             0%, 100% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(10deg) scale(1.1); }
+            50% { transform: rotate(10deg) scale(1.08); }
         }
 
-        .star-sticker-2 {
-            position: fixed;
-            bottom: 8%;
-            right: 8%;
-            font-size: 35px;
-            animation: starSpin2 5s ease-in-out infinite;
-            z-index: 1;
-            filter: drop-shadow(0 0 8px #ffd700);
-        }
-        @keyframes starSpin2 {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(-8deg) scale(1.08); }
-        }
+        /* Different positions for star stickers */
+        .star1 { bottom: 2%; left: 2%; animation-delay: 0s; }
+        .star2 { bottom: 5%; left: 12%; animation-delay: 0.5s; font-size: 28px; }
+        .star3 { bottom: 1%; right: 2%; animation-delay: 1s; font-size: 35px; }
+        .star4 { bottom: 6%; right: 15%; animation-delay: 1.5s; font-size: 25px; }
+        .star5 { bottom: 10%; left: 25%; animation-delay: 2s; font-size: 28px; }
+        .star6 { bottom: 3%; right: 28%; animation-delay: 2.5s; font-size: 30px; }
+        .star7 { bottom: 8%; left: 35%; animation-delay: 3s; font-size: 24px; }
+        .star8 { bottom: 4%; right: 40%; animation-delay: 3.5s; font-size: 26px; }
 
-        /* ========== 🫧 BUBBLE STICKERS (UPAR SIDE) ========== */
+        /* ========== 🫧 BUBBLE STICKERS (UPAR SIDE - 8 STICKERS) ========== */
         .bubble-sticker {
             position: fixed;
-            top: 8%;
-            left: 3%;
-            font-size: 40px;
-            animation: bubbleFloat 3s ease-in-out infinite;
+            font-size: 32px;
+            animation: bubbleFloat 3.5s ease-in-out infinite;
             z-index: 1;
             filter: drop-shadow(0 0 5px #88ccff);
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
+        .bubble-sticker:hover {
+            transform: scale(1.15);
         }
         @keyframes bubbleFloat {
-            0%, 100% { transform: translateY(0px); opacity: 0.7; }
-            50% { transform: translateY(-10px); opacity: 1; }
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.7; }
+            50% { transform: translateY(-10px) scale(1.05); opacity: 1; }
         }
 
-        .bubble-sticker-2 {
-            position: fixed;
-            top: 12%;
-            right: 12%;
-            font-size: 30px;
-            animation: bubbleFloat2 4s ease-in-out infinite;
-            z-index: 1;
-            filter: drop-shadow(0 0 5px #88ccff);
-        }
-        @keyframes bubbleFloat2 {
-            0%, 100% { transform: translateY(0px); opacity: 0.6; }
-            50% { transform: translateY(-8px); opacity: 1; }
-        }
+        /* Different positions for bubble stickers */
+        .bubble1 { top: 3%; left: 2%; animation-delay: 0s; }
+        .bubble2 { top: 8%; left: 10%; animation-delay: 0.6s; font-size: 28px; }
+        .bubble3 { top: 2%; right: 12%; animation-delay: 1.2s; font-size: 35px; }
+        .bubble4 { top: 7%; right: 3%; animation-delay: 1.8s; font-size: 28px; }
+        .bubble5 { top: 14%; left: 18%; animation-delay: 2.4s; font-size: 26px; }
+        .bubble6 { top: 10%; right: 22%; animation-delay: 3s; font-size: 30px; }
+        .bubble7 { top: 18%; left: 5%; animation-delay: 3.6s; font-size: 24px; }
+        .bubble8 { top: 5%; right: 30%; animation-delay: 4.2s; font-size: 28px; }
 
         /* ========== FLOATING PARTICLES ========== */
         .particle {
@@ -433,10 +431,8 @@
             .main-title { font-size: 26px; }
             .moon { width: 50px; height: 50px; top: 3%; right: 3%; }
             .sun-glow { width: 80px; height: 80px; }
-            .star-sticker { font-size: 30px; bottom: 3%; left: 3%; }
-            .star-sticker-2 { font-size: 25px; bottom: 5%; right: 5%; }
-            .bubble-sticker { font-size: 30px; top: 5%; left: 2%; }
-            .bubble-sticker-2 { font-size: 25px; top: 8%; right: 8%; }
+            .star-sticker { font-size: 22px; }
+            .bubble-sticker { font-size: 22px; }
         }
     </style>
 </head>
@@ -452,13 +448,25 @@
 <!-- Moon -->
 <div class="moon"></div>
 
-<!-- 🌠 Star Stickers (Niche Side) -->
-<div class="star-sticker">🌠</div>
-<div class="star-sticker-2">⭐</div>
+<!-- ========== 🌠 STAR STICKERS (NICHE SIDE - 8) ========== -->
+<div class="star-sticker star1">🌠</div>
+<div class="star-sticker star2">⭐</div>
+<div class="star-sticker star3">🌟</div>
+<div class="star-sticker star4">✨</div>
+<div class="star-sticker star5">💫</div>
+<div class="star-sticker star6">⭐</div>
+<div class="star-sticker star7">🌠</div>
+<div class="star-sticker star8">✨</div>
 
-<!-- 🫧 Bubble Stickers (Upar Side) -->
-<div class="bubble-sticker">🫧</div>
-<div class="bubble-sticker-2">💧</div>
+<!-- ========== 🫧 BUBBLE STICKERS (UPAR SIDE - 8) ========== -->
+<div class="bubble-sticker bubble1">🫧</div>
+<div class="bubble-sticker bubble2">💧</div>
+<div class="bubble-sticker bubble3">🫧</div>
+<div class="bubble-sticker bubble4">✨</div>
+<div class="bubble-sticker bubble5">💎</div>
+<div class="bubble-sticker bubble6">🫧</div>
+<div class="bubble-sticker bubble7">💧</div>
+<div class="bubble-sticker bubble8">✨</div>
 
 <!-- Background Stars -->
 <script>
