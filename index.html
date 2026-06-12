@@ -14,238 +14,199 @@
         body {
             min-height: 100vh;
             font-family: 'Poppins', 'Inter', 'Segoe UI', system-ui, sans-serif;
-            background: linear-gradient(135deg, #0a0a1a 0%, #1a1a3e 100%);
             display: flex;
             justify-content: center;
             align-items: center;
             padding: 20px;
             position: relative;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
         }
 
-        /* Premium Background Effects */
-        body::before {
-            content: '';
+        /* ========== PEHLE WALA ADVENTURE BACKGROUND ========== */
+        .adventure-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 40%, rgba(255, 215, 0, 0.08), transparent 60%);
-            pointer-events: none;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            z-index: 0;
         }
 
-        /* Main Container */
+        .mountain {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            height: 40%;
+            background: linear-gradient(180deg, transparent, #1a1a3e);
+            clip-path: polygon(0% 100%, 0% 60%, 10% 40%, 20% 55%, 30% 35%, 45% 50%, 60% 30%, 75% 45%, 85% 25%, 100% 40%, 100% 100%);
+            animation: mountainFloat 8s ease-in-out infinite;
+            z-index: 0;
+        }
+        .mountain-2 {
+            height: 35%;
+            background: linear-gradient(180deg, transparent, #2a2555);
+            clip-path: polygon(0% 100%, 0% 70%, 15% 55%, 25% 65%, 40% 45%, 55% 60%, 70% 40%, 85% 55%, 100% 45%, 100% 100%);
+            animation: mountainFloat 10s ease-in-out infinite reverse;
+            opacity: 0.7;
+        }
+        @keyframes mountainFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(15px); }
+        }
+
+        .sun-glow {
+            position: fixed;
+            top: 10%;
+            right: 5%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #ff9a56, #ff6b35, transparent);
+            border-radius: 50%;
+            filter: blur(40px);
+            animation: sunPulse 4s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes sunPulse {
+            0%, 100% { transform: scale(1); opacity: 0.6; }
+            50% { transform: scale(1.2); opacity: 1; }
+        }
+
+        .aurora {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, 
+                transparent, 
+                rgba(0, 255, 255, 0.08), 
+                rgba(255, 0, 255, 0.08), 
+                rgba(255, 100, 0, 0.08), 
+                transparent);
+            animation: auroraMove 12s ease-in-out infinite;
+            z-index: 0;
+            pointer-events: none;
+        }
+        @keyframes auroraMove {
+            0%, 100% { transform: translateX(-30%) skewX(10deg); opacity: 0.3; }
+            50% { transform: translateX(30%) skewX(-10deg); opacity: 0.6; }
+        }
+
+        /* ========== MOON ========== */
+        .moon-container {
+            position: fixed;
+            top: 5%;
+            right: 5%;
+            z-index: 2;
+            animation: moonContainerFloat 6s ease-in-out infinite;
+        }
+        @keyframes moonContainerFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .premium-moon {
+            position: relative;
+            width: 65px;
+            height: 65px;
+            background: radial-gradient(circle at 35% 35%, #fff8e7, #ffe6b3, #ffd89a);
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(255, 235, 170, 0.8), inset -8px -5px 15px rgba(0, 0, 0, 0.2);
+            animation: moonPulse 3s ease-in-out infinite;
+        }
+        @keyframes moonPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.02); }
+        }
+
+        .crater {
+            position: absolute;
+            background: radial-gradient(circle, rgba(180, 130, 70, 0.4), rgba(140, 100, 50, 0.2));
+            border-radius: 50%;
+        }
+        .crater1 { width: 10px; height: 10px; top: 15%; left: 12%; }
+        .crater2 { width: 7px; height: 7px; top: 45%; left: 25%; }
+        .crater3 { width: 12px; height: 12px; bottom: 20%; right: 15%; }
+        .crater4 { width: 6px; height: 6px; top: 60%; right: 35%; }
+        .crater5 { width: 8px; height: 8px; top: 25%; right: 25%; }
+
+        .moon-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 85px;
+            height: 85px;
+            border-radius: 50%;
+            border: 1.5px solid rgba(255, 230, 150, 0.3);
+            transform: translate(-50%, -50%);
+            animation: ringPulse 3s ease-in-out infinite;
+        }
+        @keyframes ringPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; }
+        }
+
+        /* ========== STARS ========== */
+        .star {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.2; }
+            50% { opacity: 1; }
+        }
+
+        /* ========== PARTICLES ========== */
+        .particle {
+            position: fixed;
+            background: radial-gradient(circle, #ffd700, #ff8c00);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatUp 6s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.3; }
+            100% { transform: translateY(-150px) scale(0); opacity: 0; }
+        }
+
+        /* ========== MAIN CARD ========== */
         .container {
-            max-width: 500px;
+            max-width: 450px;
             width: 100%;
             z-index: 10;
         }
 
-        /* Header */
-        .header {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            background: linear-gradient(135deg, #ffd700, #ff6b35);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            letter-spacing: 1px;
-        }
-        .tagline {
-            font-size: 11px;
-            color: #8a94b5;
-            margin-top: 5px;
-        }
-
-        /* Refer & Earn Banner */
-        .refer-banner {
-            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 100, 0, 0.1));
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 20px;
-            padding: 12px 16px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-        .refer-title {
-            font-size: 14px;
-            font-weight: 700;
-            color: #ffd700;
-        }
-        .refer-desc {
-            font-size: 10px;
-            color: #a8b2d1;
-            margin-top: 4px;
-        }
-        .refer-link {
-            background: rgba(0,0,0,0.4);
-            padding: 6px 12px;
-            border-radius: 40px;
-            font-size: 11px;
-            color: #ffdfaa;
-            margin-top: 8px;
-            display: inline-block;
-            font-family: monospace;
-        }
-
-        /* Telegram Support */
-        .telegram-support {
-            background: rgba(0, 136, 204, 0.15);
-            border: 1px solid rgba(0, 136, 204, 0.3);
-            border-radius: 40px;
-            padding: 8px 16px;
-            text-align: center;
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-        .telegram-text {
-            font-size: 12px;
-            font-weight: 600;
-            color: #88ccff;
-        }
-        .telegram-btn {
-            background: linear-gradient(135deg, #0088cc, #0066aa);
-            padding: 6px 16px;
-            border-radius: 40px;
-            font-size: 11px;
-            font-weight: 700;
-            color: white;
-            text-decoration: none;
-            transition: 0.2s;
-        }
-        .telegram-btn:active {
-            transform: scale(0.95);
-        }
-
-        /* Live Carding Badge */
-        .live-badge {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-        .badge {
-            background: linear-gradient(135deg, #ff3333, #cc0000);
-            padding: 6px 20px;
-            border-radius: 40px;
-            font-size: 12px;
-            font-weight: 800;
-            color: white;
-            display: inline-block;
-            animation: pulse 1.5s infinite;
-        }
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); opacity: 0.8; }
-            50% { transform: scale(1.05); opacity: 1; }
-        }
-
-        /* Safe Card Text */
-        .safe-card {
-            text-align: center;
-            font-size: 11px;
-            color: #8a94b5;
-            margin-bottom: 20px;
-        }
-
-        /* Filter Section */
-        .filter-section {
-            background: rgba(20, 20, 40, 0.6);
-            backdrop-filter: blur(10px);
-            border-radius: 20px;
-            padding: 12px;
-            margin-bottom: 20px;
-        }
-        .sort-buttons {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin-bottom: 12px;
-        }
-        .sort-btn {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            padding: 5px 12px;
-            border-radius: 30px;
-            font-size: 10px;
-            font-weight: 600;
-            color: #ffdfaa;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .sort-btn.active {
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            color: #0a0a1a;
-            border-color: transparent;
-        }
-        .price-range {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 10px;
-            flex-wrap: wrap;
-        }
-        .price-input {
-            background: rgba(0,0,0,0.4);
-            border: 1px solid rgba(255, 215, 0, 0.3);
-            border-radius: 30px;
-            padding: 6px 12px;
-            font-size: 11px;
-            color: #ffdfaa;
-            width: 100px;
-            text-align: center;
-        }
-        .category-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            justify-content: center;
-            margin-top: 12px;
-        }
-        .cat-btn {
-            background: rgba(255, 215, 0, 0.1);
-            border: 1px solid rgba(255, 215, 0, 0.2);
-            padding: 4px 10px;
-            border-radius: 20px;
-            font-size: 9px;
-            font-weight: 600;
-            color: #a8b2d1;
-            cursor: pointer;
-        }
-        .cat-btn.active {
-            background: rgba(255, 215, 0, 0.3);
-            color: #ffd700;
-        }
-
-        /* Card Container */
         .card-container {
             background: linear-gradient(135deg, rgba(20, 15, 45, 0.9), rgba(10, 8, 25, 0.95));
             border-radius: 32px;
-            padding: 20px;
-            margin-bottom: 20px;
+            padding: 22px 24px 26px;
             border: 1px solid rgba(255, 215, 0, 0.3);
             transition: all 0.3s;
             animation: fadeIn 0.4s ease;
+            backdrop-filter: blur(10px);
         }
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateX(20px); }
-            to { opacity: 1; transform: translateX(0); }
+            from { opacity: 0; transform: scale(0.95); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .card-header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 25px;
         }
         .card-type {
             font-weight: 800;
-            font-size: 18px;
+            font-size: 20px;
             background: linear-gradient(135deg, #ffd700, #ff8c00);
             -webkit-background-clip: text;
             background-clip: text;
@@ -253,54 +214,61 @@
         }
         .card-price {
             background: linear-gradient(135deg, #ffd700, #ff8c00);
-            padding: 4px 12px;
+            padding: 5px 14px;
             border-radius: 40px;
             font-weight: 700;
-            font-size: 16px;
+            font-size: 18px;
             color: #0a0a1a;
+            animation: pricePulse 1s infinite;
+        }
+        @keyframes pricePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
         }
 
         .card-number {
-            font-size: 22px;
-            letter-spacing: 2px;
+            font-size: 24px;
+            letter-spacing: 3px;
             font-weight: 600;
             font-family: monospace;
-            margin: 15px 0;
+            margin: 20px 0 18px;
             color: #ffffff;
         }
         .card-details {
             display: flex;
             justify-content: space-between;
-            font-size: 12px;
+            font-size: 13px;
             color: #a8b2d1;
-            margin-bottom: 15px;
+            margin-bottom: 18px;
         }
         .card-balance {
             font-weight: 800;
             font-size: 18px;
             color: #ffd700;
+            margin: 10px 0;
         }
         .card-name {
             font-weight: 600;
             color: #ffffff;
             text-transform: uppercase;
-            margin-top: 10px;
-            font-size: 13px;
+            margin-top: 12px;
+            font-size: 14px;
+            letter-spacing: 1px;
         }
 
         /* Action Buttons */
         .action-buttons {
             display: flex;
             gap: 12px;
-            margin-top: 15px;
+            margin-top: 20px;
         }
         .add-cart {
             flex: 1;
             background: rgba(255, 215, 0, 0.15);
             border: 1px solid rgba(255, 215, 0, 0.4);
-            padding: 10px;
+            padding: 12px;
             border-radius: 40px;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 600;
             color: #ffdfaa;
             cursor: pointer;
@@ -311,9 +279,9 @@
             flex: 1;
             background: linear-gradient(135deg, #ffd700, #ff6b35);
             border: none;
-            padding: 10px;
+            padding: 12px;
             border-radius: 40px;
-            font-size: 13px;
+            font-size: 14px;
             font-weight: 800;
             color: #0a0a1a;
             cursor: pointer;
@@ -324,17 +292,16 @@
             transform: scale(0.96);
         }
 
-        /* Navigation Buttons */
-        .nav-buttons {
+        /* Next Button Only */
+        .next-btn-container {
             display: flex;
-            gap: 15px;
             justify-content: center;
-            margin-top: 10px;
+            margin-top: 20px;
         }
-        .nav-btn {
+        .next-btn {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.2), rgba(255, 100, 0, 0.1));
             border: 1px solid rgba(255, 215, 0, 0.4);
-            padding: 10px 25px;
+            padding: 12px 30px;
             border-radius: 40px;
             font-size: 14px;
             font-weight: 700;
@@ -342,14 +309,14 @@
             cursor: pointer;
             transition: 0.2s;
         }
-        .nav-btn:active {
+        .next-btn:active {
             transform: scale(0.95);
         }
         .page-indicator {
             text-align: center;
             font-size: 12px;
             color: #8a94b5;
-            margin-top: 10px;
+            margin-top: 12px;
         }
 
         /* Toast */
@@ -370,80 +337,73 @@
         }
 
         @media (max-width: 500px) {
-            .container { padding: 0 5px; }
-            .card-number { font-size: 16px; letter-spacing: 1px; }
-            .card-type { font-size: 14px; }
-            .card-price { font-size: 13px; }
+            .card-number { font-size: 18px; letter-spacing: 2px; }
+            .card-type { font-size: 16px; }
+            .card-price { font-size: 15px; }
             .toast-msg { font-size: 11px; white-space: normal; width: 85%; text-align: center; }
-            .nav-btn { padding: 8px 18px; font-size: 12px; }
         }
     </style>
 </head>
 <body>
 
+<!-- ========== PEHLE WALE BACKGROUND ELEMENTS ========== -->
+<div class="adventure-bg"></div>
+<div class="mountain"></div>
+<div class="mountain mountain-2"></div>
+<div class="sun-glow"></div>
+<div class="aurora"></div>
+
+<!-- Moon -->
+<div class="moon-container">
+    <div class="moon-ring"></div>
+    <div class="premium-moon">
+        <div class="crater crater1"></div>
+        <div class="crater crater2"></div>
+        <div class="crater crater3"></div>
+        <div class="crater crater4"></div>
+        <div class="crater crater5"></div>
+    </div>
+</div>
+
+<!-- Background Stars -->
+<script>
+    for (let i = 0; i < 100; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 2 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        document.body.appendChild(star);
+    }
+    
+    // Particles
+    for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        const size = Math.random() * 4 + 1;
+        particle.style.width = size + 'px';
+        particle.style.height = size + 'px';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.bottom = '0%';
+        particle.style.animationDelay = Math.random() * 5 + 's';
+        particle.style.animationDuration = Math.random() * 6 + 4 + 's';
+        document.body.appendChild(particle);
+    }
+</script>
+
+<!-- Main Container -->
 <div class="container">
-    <!-- Header -->
-    <div class="header">
-        <div class="logo">💎 CARDVAULT • PREMIUM CARD SHOP</div>
-        <div class="tagline">trusted-card-ofc.site.je</div>
-    </div>
-
-    <!-- Refer & Earn -->
-    <div class="refer-banner">
-        <div class="refer-title">⭐ Refer & Earn Coins! ⭐</div>
-        <div class="refer-desc">Invite friends and earn bonus coins on every successful referral</div>
-        <div class="refer-link">📎 Free Coin Rules | 💬 Telegram Support</div>
-        <div class="refer-link" style="margin-top: 5px; font-size: 10px;">🔗 referral-link.cardvault.com/invite</div>
-    </div>
-
-    <!-- Telegram Support -->
-    <div class="telegram-support">
-        <span class="telegram-text">📱 Telegram Support | 24/7 Live Help</span>
-        <a href="#" class="telegram-btn" id="telegramLink">Join Channel →</a>
-    </div>
-
-    <!-- Live Carding Badge -->
-    <div class="live-badge">
-        <div class="badge">⚡ LIVE CARDING ⚡</div>
-    </div>
-
-    <!-- Safe Card -->
-    <div class="safe-card">
-        🔒 SAFE CARD — This website only trusted carding — buy your card and enjoy. 100₽ = 1K balance
-    </div>
-
-    <!-- Filter Section -->
-    <div class="filter-section">
-        <div class="sort-buttons">
-            <button class="sort-btn" data-sort="price-low">Price Low → High</button>
-            <button class="sort-btn" data-sort="price-high">Price High → Low</button>
-            <button class="sort-btn" data-sort="balance-high">Balance High → Low</button>
-        </div>
-        <div class="price-range">
-            <span style="font-size: 11px; color: #8a94b5;">Price Range:</span>
-            <input type="text" placeholder="₽ MIN" class="price-input" id="minPrice" value="100">
-            <span style="color: #ffd700;">—</span>
-            <input type="text" placeholder="₽ MAX" class="price-input" id="maxPrice" value="2000">
-        </div>
-        <div class="category-buttons">
-            <button class="cat-btn active" data-cat="all">All</button>
-            <button class="cat-btn" data-cat="visa">VISA</button>
-            <button class="cat-btn" data-cat="mastercard">MASTERCARD</button>
-            <button class="cat-btn" data-cat="amex">AMEX</button>
-            <button class="cat-btn" data-cat="rupay">RUPAY</button>
-            <button class="cat-btn" data-cat="jcb">JCB</button>
-        </div>
-    </div>
-
     <!-- Card Display -->
     <div id="cardContainer" class="card-container">
         <!-- Dynamic card will appear here -->
     </div>
 
-    <!-- Navigation Buttons -->
-    <div class="nav-buttons">
-        <button class="nav-btn" id="prevBtn">◀ PREV CARD</button>
-        <button class="nav-btn" id="nextBtn">NEXT CARD ▶</button>
+    <!-- Next Button Only -->
+    <div class="next-btn-container">
+        <button class="next-btn" id="nextBtn">▶ NEXT CARD</button>
     </div>
     <div class="page-indicator" id="pageIndicator">Card 1 / 5</div>
 </div>
@@ -461,8 +421,7 @@
             cvv: "•••",
             balance: 1200,
             price: 100,
-            name: "ROHIT SHARMA",
-            category: "mastercard"
+            name: "ROHIT SHARMA"
         },
         {
             id: 2,
@@ -472,9 +431,7 @@
             cvv: "•••",
             balance: 2450,
             price: 250,
-            name: "JOHNSON CARDER",
-            category: "mastercard",
-            isPlayStore: true
+            name: "JOHNSON CARDER"
         },
         {
             id: 3,
@@ -484,8 +441,7 @@
             cvv: "•••",
             balance: 5000,
             price: 500,
-            name: "SNEHA P.",
-            category: "visa"
+            name: "SNEHA P."
         },
         {
             id: 4,
@@ -495,8 +451,7 @@
             cvv: "•••",
             balance: 10000,
             price: 1000,
-            name: "DIVYA R.",
-            category: "amex"
+            name: "DIVYA R."
         },
         {
             id: 5,
@@ -506,120 +461,71 @@
             cvv: "•••",
             balance: 20000,
             price: 1500,
-            name: "KARTIK R.",
-            category: "mastercard"
+            name: "KARTIK R."
         }
     ];
 
     let currentIndex = 0;
-    let currentCategory = "all";
-    let currentSort = "none";
-    let filteredCards = [...cards];
 
     // DOM Elements
     const cardContainer = document.getElementById('cardContainer');
-    const prevBtn = document.getElementById('prevBtn');
     const nextBtn = document.getElementById('nextBtn');
     const pageIndicator = document.getElementById('pageIndicator');
     const toastMsg = document.getElementById('toastMsg');
-    const minPriceInput = document.getElementById('minPrice');
-    const maxPriceInput = document.getElementById('maxPrice');
-
-    // Filter and Sort Functions
-    function filterCards() {
-        let filtered = [...cards];
-        
-        // Category filter
-        if (currentCategory !== "all") {
-            filtered = filtered.filter(card => card.category === currentCategory);
-        }
-        
-        // Price range filter
-        const minPrice = parseInt(minPriceInput.value) || 0;
-        const maxPrice = parseInt(maxPriceInput.value) || Infinity;
-        filtered = filtered.filter(card => card.price >= minPrice && card.price <= maxPrice);
-        
-        // Sort
-        if (currentSort === "price-low") {
-            filtered.sort((a, b) => a.price - b.price);
-        } else if (currentSort === "price-high") {
-            filtered.sort((a, b) => b.price - a.price);
-        } else if (currentSort === "balance-high") {
-            filtered.sort((a, b) => b.balance - a.balance);
-        }
-        
-        filteredCards = filtered;
-        
-        // Reset index if out of bounds
-        if (currentIndex >= filteredCards.length) {
-            currentIndex = 0;
-        }
-        
-        renderCard();
-    }
 
     // Render Current Card
     function renderCard() {
-        if (filteredCards.length === 0) {
-            cardContainer.innerHTML = `<div style="text-align: center; padding: 40px; color: #8a94b5;">No cards found in this range</div>`;
-            pageIndicator.textContent = `0 / 0`;
-            return;
-        }
-        
-        const card = filteredCards[currentIndex];
+        const card = cards[currentIndex];
         const isPlayStore = card.type === "PLAY STORE";
         
         cardContainer.innerHTML = `
             <div class="card-header">
                 <div class="card-type">${isPlayStore ? '🎮 PLAY STORE' : '💳 ' + card.type}</div>
-                <div class="card-price">₽${card.price}</div>
+                <div class="card-price">₹${card.price}</div>
             </div>
             <div class="card-number">${card.number}</div>
             <div class="card-details">
                 <span>EXPIRES <strong>${card.expiry}</strong></span>
                 <span>CVV <strong>${card.cvv}</strong></span>
             </div>
-            <div class="card-balance">BALANCE: ₽${card.balance.toLocaleString()}</div>
+            <div class="card-balance">BALANCE / LIMIT: ₹${card.balance.toLocaleString()}</div>
             <div class="card-name">${card.name}</div>
             <div class="action-buttons">
-                <div class="add-cart" onclick="addToCart(${card.id})">📦 Add to Cart</div>
-                <div class="buy-now" onclick="buyNow(${card.id})">💎 Buy Now — ₽${card.price}</div>
+                <div class="add-cart" onclick="addToCart(${card.id})">🛒 Add to Cart</div>
+                <div class="buy-now" onclick="buyNow(${card.id})">💎 Buy Now — ₹${card.price}</div>
             </div>
         `;
         
-        pageIndicator.textContent = `Card ${currentIndex + 1} / ${filteredCards.length}`;
+        pageIndicator.textContent = `Card ${currentIndex + 1} / ${cards.length}`;
+        
+        // Update next button text on last card
+        if (currentIndex === cards.length - 1) {
+            nextBtn.innerHTML = '🏁 LAST CARD';
+        } else {
+            nextBtn.innerHTML = '▶ NEXT CARD';
+        }
     }
 
-    // Navigation
+    // Next Card Function
     function nextCard() {
-        if (filteredCards.length === 0) return;
-        if (currentIndex + 1 < filteredCards.length) {
+        if (currentIndex + 1 < cards.length) {
             currentIndex++;
             renderCard();
         } else {
-            showToast("✨ This is the last card!");
-        }
-    }
-    
-    function prevCard() {
-        if (filteredCards.length === 0) return;
-        if (currentIndex - 1 >= 0) {
-            currentIndex--;
-            renderCard();
-        } else {
-            showToast("✨ This is the first card!");
+            showToast("🎉 This is the last card! No more cards available.");
         }
     }
 
-    // UPI Payment
+    // Add to Cart
     function addToCart(cardId) {
         const card = cards.find(c => c.id === cardId);
-        showToast(`📦 Added to cart: ${card.type} - ₽${card.price}`);
+        showToast(`📦 Added to cart: ${card.type} - ₹${card.price}`);
     }
     
+    // Buy Now - UPI Payment
     function buyNow(cardId) {
         const card = cards.find(c => c.id === cardId);
-        showToast(`💎 Processing payment for ₽${card.price}... Opening UPI app`);
+        showToast(`💎 Processing payment for ₹${card.price}... Opening UPI app`);
         
         const upiUrl = `upi://pay?pa=kartikrawat6266@okhdfcbank&pn=CARDVAULT&am=${card.price}&cu=INR&tn=Premium%20Card%20Purchase`;
         const anchor = document.createElement('a');
@@ -628,6 +534,10 @@
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
+        
+        setTimeout(() => {
+            showToast(`💰 Payment request for ₹${card.price}. Open UPI app to complete!`, 4000);
+        }, 1000);
     }
 
     function showToast(msg, duration = 2500) {
@@ -639,41 +549,10 @@
     }
 
     // Event Listeners
-    prevBtn.addEventListener('click', prevCard);
     nextBtn.addEventListener('click', nextCard);
-    
-    minPriceInput.addEventListener('input', filterCards);
-    maxPriceInput.addEventListener('input', filterCards);
-    
-    // Sort buttons
-    document.querySelectorAll('.sort-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.sort-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentSort = btn.dataset.sort;
-            filterCards();
-        });
-    });
-    
-    // Category buttons
-    document.querySelectorAll('.cat-btn').forEach(btn => {
-        btn.addEventListener('click', () => {
-            document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-            btn.classList.add('active');
-            currentCategory = btn.dataset.cat;
-            filterCards();
-        });
-    });
-    
-    // Telegram Link
-    document.getElementById('telegramLink').addEventListener('click', (e) => {
-        e.preventDefault();
-        showToast("📱 Opening Telegram support channel...");
-        window.open("https://t.me/cardvault_support", "_blank");
-    });
 
     // Initialize
-    filterCards();
+    renderCard();
 </script>
 </body>
 </html>
