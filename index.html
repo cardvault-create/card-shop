@@ -20,61 +20,159 @@
             padding: 20px;
             position: relative;
             overflow-x: hidden;
+            background: #05070a;
         }
 
-        /* ========== EPIC ADVENTURE ANIMATED BACKGROUND ========== */
-        .adventure-bg {
+        /* ========== PREMIUM ANIMATED BACKGROUND ========== */
+        .premium-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            background: radial-gradient(ellipse at 30% 40%, #0a0a2a, #020210);
             z-index: 0;
         }
 
-        /* Animated floating mountains */
-        .mountain {
+        /* ========== MOON - REAL PREMIUM ANIMATION ========== */
+        .moon-container {
             position: fixed;
-            bottom: 0;
-            width: 100%;
-            height: 40%;
-            background: linear-gradient(180deg, transparent, #1a1a3e);
-            clip-path: polygon(0% 100%, 0% 60%, 10% 40%, 20% 55%, 30% 35%, 45% 50%, 60% 30%, 75% 45%, 85% 25%, 100% 40%, 100% 100%);
-            animation: mountainFloat 8s ease-in-out infinite;
-            z-index: 0;
-        }
-        .mountain-2 {
-            height: 35%;
-            background: linear-gradient(180deg, transparent, #2a2555);
-            clip-path: polygon(0% 100%, 0% 70%, 15% 55%, 25% 65%, 40% 45%, 55% 60%, 70% 40%, 85% 55%, 100% 45%, 100% 100%);
-            animation: mountainFloat 10s ease-in-out infinite reverse;
-            opacity: 0.7;
-        }
-        @keyframes mountainFloat {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(15px); }
-        }
-
-        /* Animated sun/glow */
-        .sun-glow {
-            position: fixed;
-            top: 10%;
+            top: 5%;
             right: 5%;
+            z-index: 1;
+            animation: moonFloat 8s ease-in-out infinite;
+        }
+        @keyframes moonFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .moon {
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle at 30% 30%, #fffbe6, #ffe6a3, #ffd580);
+            border-radius: 50%;
+            box-shadow: 0 0 30px rgba(255, 230, 150, 0.8), 0 0 60px rgba(255, 220, 100, 0.5), 0 0 100px rgba(255, 200, 80, 0.3);
+            animation: moonPulse 4s ease-in-out infinite;
+            position: relative;
+        }
+        @keyframes moonPulse {
+            0%, 100% { box-shadow: 0 0 20px rgba(255, 230, 150, 0.6), 0 0 40px rgba(255, 220, 100, 0.3); transform: scale(1); }
+            50% { box-shadow: 0 0 50px rgba(255, 230, 150, 1), 0 0 80px rgba(255, 220, 100, 0.7), 0 0 120px rgba(255, 200, 80, 0.5); transform: scale(1.02); }
+        }
+
+        /* Moon Craters */
+        .moon::before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 15%;
+            width: 18px;
+            height: 18px;
+            background: rgba(180, 140, 80, 0.3);
+            border-radius: 50%;
+            box-shadow: 25px 35px 0 2px rgba(160, 120, 60, 0.2), -15px 45px 0 1px rgba(170, 130, 70, 0.25);
+        }
+
+        .moon-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
             width: 150px;
             height: 150px;
-            background: radial-gradient(circle, #ff9a56, #ff6b35, transparent);
+            background: radial-gradient(circle, rgba(255, 230, 150, 0.3), transparent);
             border-radius: 50%;
-            filter: blur(40px);
-            animation: sunPulse 4s ease-in-out infinite;
-            z-index: 0;
+            transform: translate(-50%, -50%);
+            animation: glowExpand 3s ease-in-out infinite;
         }
-        @keyframes sunPulse {
-            0%, 100% { transform: scale(1); opacity: 0.6; }
-            50% { transform: scale(1.2); opacity: 1; }
+        @keyframes glowExpand {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.8; }
         }
 
-        /* Aurora borealis effect */
+        /* ========== STARS - TWINKLING ANIMATION ========== */
+        .star {
+            position: fixed;
+            background: white;
+            border-radius: 50%;
+            z-index: 0;
+            animation: starTwinkle var(--duration) ease-in-out infinite;
+        }
+        @keyframes starTwinkle {
+            0%, 100% { opacity: 0.2; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.3); box-shadow: 0 0 5px white, 0 0 10px #ffd700; }
+        }
+
+        /* Big Glowing Stars */
+        .star-glow {
+            position: fixed;
+            background: radial-gradient(circle, #ffd700, #ff8c00);
+            border-radius: 50%;
+            z-index: 0;
+            animation: starGlow 2.5s ease-in-out infinite alternate;
+        }
+        @keyframes starGlow {
+            0% { opacity: 0.3; transform: scale(0.8); box-shadow: 0 0 5px #ffd700; }
+            100% { opacity: 1; transform: scale(1.2); box-shadow: 0 0 20px #ffd700, 0 0 30px #ff8c00; }
+        }
+
+        /* ========== SHOOTING STARS ========== */
+        .shooting-star {
+            position: fixed;
+            width: 3px;
+            height: 3px;
+            background: linear-gradient(90deg, white, transparent);
+            border-radius: 50%;
+            animation: shootStar 6s linear infinite;
+            z-index: 1;
+            opacity: 0;
+        }
+        @keyframes shootStar {
+            0% {
+                transform: translateX(0) translateY(0) rotate(45deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            20% {
+                transform: translateX(-300px) translateY(300px) rotate(45deg);
+                opacity: 0;
+            }
+            100% {
+                transform: translateX(-600px) translateY(600px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        /* ========== BUBBLES ANIMATION (UPAR SIDE) ========== */
+        .bubble {
+            position: fixed;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.4), rgba(255, 215, 150, 0.1));
+            border-radius: 50%;
+            pointer-events: none;
+            animation: bubbleFloat 8s ease-in-out infinite;
+            z-index: 1;
+            backdrop-filter: blur(2px);
+        }
+        @keyframes bubbleFloat {
+            0% {
+                transform: translateY(0) translateX(0) scale(0.8);
+                opacity: 0;
+            }
+            20% {
+                opacity: 0.6;
+            }
+            80% {
+                opacity: 0.3;
+            }
+            100% {
+                transform: translateY(-200px) translateX(50px) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        /* ========== AURORA BOREALIS ========== */
         .aurora {
             position: fixed;
             top: 0;
@@ -83,52 +181,37 @@
             height: 100%;
             background: linear-gradient(90deg, 
                 transparent, 
-                rgba(0, 255, 255, 0.08), 
-                rgba(255, 0, 255, 0.08), 
-                rgba(255, 100, 0, 0.08), 
+                rgba(0, 255, 200, 0.06), 
+                rgba(100, 0, 255, 0.06), 
+                rgba(255, 100, 0, 0.06), 
                 transparent);
-            animation: auroraMove 12s ease-in-out infinite;
+            animation: auroraWave 10s ease-in-out infinite;
             z-index: 0;
             pointer-events: none;
         }
-        @keyframes auroraMove {
-            0%, 100% { transform: translateX(-30%) skewX(10deg); opacity: 0.3; }
-            50% { transform: translateX(30%) skewX(-10deg); opacity: 0.6; }
+        @keyframes auroraWave {
+            0%, 100% { transform: translateX(-20%) skewX(5deg); opacity: 0.3; }
+            50% { transform: translateX(20%) skewX(-5deg); opacity: 0.6; }
         }
 
-        /* Fireflies / magic dust particles */
+        /* ========== FLOATING PARTICLES (MAGIC DUST) ========== */
         .magic-particle {
             position: fixed;
             background: radial-gradient(circle, #ffd700, #ff8c00);
             border-radius: 50%;
             pointer-events: none;
             animation: magicFloat 6s infinite ease-in-out;
-            z-index: 0;
-            box-shadow: 0 0 10px #ffd700;
+            z-index: 1;
+            box-shadow: 0 0 8px #ffd700;
         }
         @keyframes magicFloat {
             0%, 100% { transform: translateY(0) translateX(0) scale(1); opacity: 0; }
             20% { opacity: 0.8; }
-            80% { opacity: 0.5; }
-            100% { transform: translateY(-200px) translateX(50px) scale(0); opacity: 0; }
+            80% { opacity: 0.4; }
+            100% { transform: translateY(-180px) translateX(40px) scale(0); opacity: 0; }
         }
 
-        /* Floating clouds */
-        .cloud {
-            position: fixed;
-            background: radial-gradient(ellipse, rgba(255,255,245,0.15), transparent);
-            border-radius: 50%;
-            animation: cloudFloat 20s linear infinite;
-            z-index: 0;
-        }
-        @keyframes cloudFloat {
-            0% { transform: translateX(-100px); opacity: 0; }
-            10% { opacity: 0.5; }
-            90% { opacity: 0.5; }
-            100% { transform: translateX(100vw); opacity: 0; }
-        }
-
-        /* ========== MAIN CARD - GLASS ADVENTURE ========== */
+        /* ========== MAIN CARD ========== */
         .terminal-card {
             max-width: 480px;
             width: 100%;
@@ -138,7 +221,7 @@
             padding: 28px 26px 36px;
             box-shadow: 0 30px 50px rgba(0, 0, 0, 0.5), 0 0 0 2px rgba(255, 215, 0, 0.2);
             transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
-            z-index: 10;
+            z-index: 100;
             border: 1px solid rgba(255, 200, 50, 0.4);
             animation: cardEntrance 0.6s ease-out;
         }
@@ -175,14 +258,14 @@
             100% { filter: hue-rotate(360deg); }
         }
 
-        /* Header - TEXT BOLD + BIG + ONE LINE */
+        /* Header */
         .mods-badge {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 28px;
             animation: slideDown 0.5s ease;
-            flex-wrap: nowrap;
+            flex-wrap: wrap;
             gap: 10px;
         }
         @keyframes slideDown {
@@ -197,7 +280,6 @@
             font-weight: 900;
             text-transform: uppercase;
             text-shadow: 0 0 10px #ff8c00;
-            white-space: nowrap;
             background: linear-gradient(135deg, #ffdfaa, #ffb347);
             -webkit-background-clip: text;
             background-clip: text;
@@ -212,7 +294,6 @@
             color: #0a0a19;
             animation: tagPulse 1.5s infinite;
             white-space: nowrap;
-            letter-spacing: 1px;
         }
         @keyframes tagPulse {
             0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
@@ -340,7 +421,7 @@
             padding: 16px 0;
             text-align: center;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            transition: all 0.3s;
             border: 1px solid rgba(255, 215, 0, 0.2);
             animation: fadeUp 0.7s ease;
         }
@@ -348,9 +429,6 @@
             0% { opacity: 0; transform: translateY(30px); }
             100% { opacity: 1; transform: translateY(0); }
         }
-
-        .card-option:nth-child(1) { animation-delay: 0.1s; }
-        .card-option:nth-child(2) { animation-delay: 0.2s; }
 
         .card-option.active {
             background: linear-gradient(135deg, #ffd700, #ff8c00);
@@ -366,12 +444,10 @@
             font-size: 26px;
             font-weight: 800;
             color: #ffd700;
-            transition: all 0.2s;
         }
         .card-option .type-text {
             font-size: 12px;
             color: #c8d0ff;
-            transition: all 0.2s;
         }
 
         /* Buy Button */
@@ -406,9 +482,6 @@
         .buy-btn:active {
             transform: scale(0.95);
         }
-        .buy-btn:hover {
-            transform: translateY(-3px);
-        }
 
         .upi-note {
             text-align: center;
@@ -422,7 +495,6 @@
             to { opacity: 1; }
         }
 
-        /* Toast */
         .toast-msg {
             position: fixed;
             bottom: 30px;
@@ -436,7 +508,6 @@
             font-weight: 700;
             z-index: 2000;
             display: none;
-            white-space: nowrap;
             animation: toastPop 0.4s ease;
         }
         @keyframes toastPop {
@@ -449,25 +520,32 @@
             .card-number { font-size: 18px; }
             .main-title { font-size: 26px; }
             .toast-msg { font-size: 12px; white-space: normal; width: 85%; text-align: center; }
-            .godx { font-size: 8px; white-space: normal; text-align: center; }
-            .premium-tag { font-size: 9px; padding: 5px 10px; white-space: nowrap; }
-            .mods-badge { flex-wrap: wrap; justify-content: center; gap: 8px; }
+            .moon { width: 60px; height: 60px; }
+            .moon-container { top: 3%; right: 3%; }
         }
     </style>
 </head>
 <body>
 
-<!-- Adventure Background Elements -->
-<div class="adventure-bg"></div>
-<div class="mountain"></div>
-<div class="mountain mountain-2"></div>
-<div class="sun-glow"></div>
+<!-- Premium Background -->
+<div class="premium-bg"></div>
+
+<!-- Moon with Premium Animation -->
+<div class="moon-container">
+    <div class="moon">
+        <div class="moon-glow"></div>
+    </div>
+</div>
+
+<!-- Aurora -->
 <div class="aurora"></div>
 
-<!-- Clouds -->
-<div class="cloud" style="width: 150px; height: 80px; top: 15%; left: -100px; animation-duration: 18s;"></div>
-<div class="cloud" style="width: 200px; height: 100px; top: 45%; left: -150px; animation-duration: 25s; animation-delay: 5s;"></div>
-<div class="cloud" style="width: 120px; height: 60px; top: 70%; left: -80px; animation-duration: 22s; animation-delay: 10s;"></div>
+<!-- Shooting Stars -->
+<div class="shooting-star" style="top: 15%; left: 85%; animation-delay: 0s;"></div>
+<div class="shooting-star" style="top: 30%; left: 70%; animation-delay: 3s; animation-duration: 5s;"></div>
+<div class="shooting-star" style="top: 50%; left: 90%; animation-delay: 7s; animation-duration: 6s;"></div>
+<div class="shooting-star" style="top: 65%; left: 60%; animation-delay: 12s; animation-duration: 4.5s;"></div>
+<div class="shooting-star" style="top: 80%; left: 75%; animation-delay: 2s; animation-duration: 5.5s;"></div>
 
 <!-- Main Card -->
 <div class="terminal-card">
@@ -478,7 +556,6 @@
     <div class="main-title">VIRTUAL TERMINAL</div>
     <div class="sub">secure • instant • epic</div>
 
-    <!-- Credit Card -->
     <div class="card-mock">
         <div class="card-type">
             <span class="mastercard-logo">💳 MASTER CARD</span>
@@ -496,7 +573,6 @@
         <div class="holder-name">ROHIT SHARMA</div>
     </div>
 
-    <!-- Amount Selector -->
     <div class="cards-selector">
         <div class="card-option active" data-amount="150" data-balance="5000">
             <div class="price">₱150</div>
@@ -508,7 +584,6 @@
         </div>
     </div>
 
-    <!-- Buy Button -->
     <button class="buy-btn" id="buyCardBtn">✨ Buy Card • ₱150 ✨</button>
     <div class="upi-note">⚡ Click Buy → Auto open GPay / PhonePe / PayTM ⚡</div>
 </div>
@@ -516,7 +591,60 @@
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // Create magic particles
+    // ========== CREATE STARS ==========
+    // Small twinkling stars
+    for (let i = 0; i < 200; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        const size = Math.random() * 2 + 1;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.setProperty('--duration', (Math.random() * 3 + 2) + 's');
+        star.style.animationDelay = Math.random() * 5 + 's';
+        document.body.appendChild(star);
+    }
+    
+    // Big glowing stars
+    for (let i = 0; i < 40; i++) {
+        const star = document.createElement('div');
+        star.classList.add('star-glow');
+        const size = Math.random() * 5 + 2;
+        star.style.width = size + 'px';
+        star.style.height = size + 'px';
+        star.style.left = Math.random() * 100 + '%';
+        star.style.top = Math.random() * 100 + '%';
+        star.style.animationDelay = Math.random() * 3 + 's';
+        star.style.animationDuration = Math.random() * 3 + 2 + 's';
+        document.body.appendChild(star);
+    }
+
+    // ========== CREATE BUBBLES (UPAR SIDE) ==========
+    function createBubble() {
+        const bubble = document.createElement('div');
+        bubble.classList.add('bubble');
+        const size = Math.random() * 25 + 10;
+        bubble.style.width = size + 'px';
+        bubble.style.height = size + 'px';
+        bubble.style.left = Math.random() * 100 + '%';
+        bubble.style.bottom = '-20px';
+        bubble.style.animationDuration = Math.random() * 6 + 5 + 's';
+        bubble.style.animationDelay = Math.random() * 2 + 's';
+        document.body.appendChild(bubble);
+        
+        setTimeout(() => {
+            bubble.remove();
+        }, 10000);
+    }
+    
+    // Create bubbles every 800ms
+    setInterval(createBubble, 800);
+    for (let i = 0; i < 10; i++) {
+        setTimeout(createBubble, i * 300);
+    }
+
+    // ========== CREATE MAGIC PARTICLES ==========
     function createMagicParticle() {
         const particle = document.createElement('div');
         particle.classList.add('magic-particle');
@@ -525,7 +653,7 @@
         particle.style.height = size + 'px';
         particle.style.left = Math.random() * 100 + '%';
         particle.style.bottom = '0%';
-        particle.style.animationDelay = Math.random() * 5 + 's';
+        particle.style.animationDelay = Math.random() * 3 + 's';
         particle.style.animationDuration = Math.random() * 4 + 4 + 's';
         document.body.appendChild(particle);
         
@@ -534,15 +662,12 @@
         }, 8000);
     }
     
-    // Create particles every 500ms
-    setInterval(createMagicParticle, 500);
-    
-    // Create more particles initially
-    for (let i = 0; i < 20; i++) {
-        setTimeout(createMagicParticle, i * 200);
+    setInterval(createMagicParticle, 400);
+    for (let i = 0; i < 25; i++) {
+        setTimeout(createMagicParticle, i * 150);
     }
 
-    // UPI Configuration
+    // ========== UPI CONFIGURATION ==========
     const UPI_ID = "kartikrawat6266@okhdfcbank";
     const MERCHANT_NAME = "BESTCHEAT";
     const CURRENCY = "INR";
@@ -569,7 +694,6 @@
         currentAmount = amount;
         currentBalance = balance;
         
-        // Animated number change
         displayPriceSpan.style.transform = 'scale(1.2)';
         displayBalanceSpan.style.transform = 'scale(1.2)';
         setTimeout(() => {
@@ -608,14 +732,12 @@
     function handleBuy() {
         showToast(`🚀 Launching UPI for ₱${currentAmount}... 🚀`, 1500);
         
-        // Button burst effect
         buyBtn.style.transform = 'scale(0.95)';
         setTimeout(() => {
             buyBtn.style.transform = 'scale(1)';
         }, 200);
         
-        // Create burst of particles on click
-        for (let i = 0; i < 15; i++) {
+        for (let i = 0; i < 20; i++) {
             setTimeout(createMagicParticle, i * 30);
         }
         
