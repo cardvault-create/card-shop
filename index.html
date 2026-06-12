@@ -430,17 +430,16 @@
             letter-spacing: 1px;
         }
 
-        /* ========== REAL PLAY STORE ICON ========== */
+        /* ========== REAL PLAY STORE ICON - SVG ========== */
         .playstore-header {
             display: flex;
             align-items: center;
             gap: 8px;
         }
-        .playstore-icon-img {
+        .playstore-svg-icon {
             width: 32px;
             height: 32px;
             display: inline-block;
-            vertical-align: middle;
         }
         .redeem-code {
             background: rgba(0, 0, 0, 0.4);
@@ -578,7 +577,7 @@
             .code-value { font-size: 14px; }
             .premium-moon { width: 50px; height: 50px; }
             .moon-ring { width: 65px; height: 65px; }
-            .playstore-icon-img { width: 24px; height: 24px; }
+            .playstore-svg-icon { width: 24px; height: 24px; }
             .email-input { font-size: 10px; padding: 8px 12px; }
             .buy-now { font-size: 16px; padding: 12px 0; }
         }
@@ -725,7 +724,11 @@
                 <div class="card-mock">
                     <div class="card-header">
                         <div class="playstore-header">
-                            <img class="playstore-icon-img" src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_icon_%282016%29.svg/32px-Google_Play_Store_icon_%282016%29.svg.png" alt="Play Store" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 24 24\'%3E%3Cpath fill=\'%234285F4\' d=\'M3 3v18l9-4.5L3 3zm18 0v18l-9-4.5L21 3z\'/%3E%3Cpath fill=\'%23EA4335\' d=\'M3 3l9 4.5L3 21z\'/%3E%3Cpath fill=\'%23FBBC05\' d=\'M21 3l-9 4.5L21 21z\'/%3E%3C/svg%3E'">
+                            <svg class="playstore-svg-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M3 3v18l9-4.5L3 3zm18 0v18l-9-4.5L21 3z" fill="#4285F4"/>
+                                <path d="M3 3l9 4.5L3 21z" fill="#EA4335"/>
+                                <path d="M21 3l-9 4.5L21 21z" fill="#FBBC05"/>
+                            </svg>
                             <div class="card-type">${card.type} REDEEM CODE</div>
                         </div>
                         <div class="card-price">₹${card.price}</div>
