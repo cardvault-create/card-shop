@@ -23,7 +23,7 @@
             background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
         }
 
-        /* ========== SIMPLE PREMIUM BACKGROUND ========== */
+        /* Premium Background */
         .premium-bg {
             position: fixed;
             top: 0;
@@ -34,7 +34,7 @@
             z-index: 0;
         }
 
-        /* ========== MOON ANIMATION (LIGHT) ========== */
+        /* Moon Animation */
         .moon {
             position: fixed;
             top: 5%;
@@ -52,7 +52,7 @@
             50% { box-shadow: 0 0 35px rgba(255, 230, 150, 0.9); transform: scale(1.02); }
         }
 
-        /* ========== STARS - SIMPLE TWINKLE ========== */
+        /* Stars Background */
         .star {
             position: fixed;
             background: white;
@@ -65,67 +65,48 @@
             50% { opacity: 1; }
         }
 
-        /* ========== 🌠 STAR STICKER (NICHE SIDE) ========== */
+        /* ========== 🌠 STAR STICKERS (NICHE SIDE - 6 STICKERS) ========== */
         .star-sticker {
             position: fixed;
-            bottom: 5%;
-            left: 5%;
-            font-size: 45px;
-            animation: starSpin 4s ease-in-out infinite;
-            z-index: 1;
-            filter: drop-shadow(0 0 10px #ffd700);
-        }
-        @keyframes starSpin {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(10deg) scale(1.1); }
-        }
-
-        /* Second star sticker */
-        .star-sticker-2 {
-            position: fixed;
-            bottom: 8%;
-            right: 8%;
             font-size: 35px;
-            animation: starSpin2 5s ease-in-out infinite;
+            animation: starFloat 4s ease-in-out infinite;
             z-index: 1;
             filter: drop-shadow(0 0 8px #ffd700);
         }
-        @keyframes starSpin2 {
-            0%, 100% { transform: rotate(0deg) scale(1); }
-            50% { transform: rotate(-8deg) scale(1.08); }
+        @keyframes starFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
+            50% { transform: translateY(-8px) rotate(10deg); opacity: 1; }
         }
 
-        /* ========== 🫧 BUBBLE STICKER (UPAR SIDE) ========== */
+        /* Different delays for each star */
+        .star1 { bottom: 3%; left: 2%; animation-delay: 0s; }
+        .star2 { bottom: 8%; left: 15%; animation-delay: 0.5s; font-size: 28px; }
+        .star3 { bottom: 2%; right: 5%; animation-delay: 1s; font-size: 40px; }
+        .star4 { bottom: 10%; right: 18%; animation-delay: 1.5s; font-size: 25px; }
+        .star5 { bottom: 15%; left: 25%; animation-delay: 2s; font-size: 30px; }
+        .star6 { bottom: 5%; right: 30%; animation-delay: 2.5s; font-size: 32px; }
+
+        /* ========== 🫧 BUBBLE STICKERS (UPAR SIDE - 6 STICKERS) ========== */
         .bubble-sticker {
             position: fixed;
-            top: 8%;
-            left: 3%;
-            font-size: 40px;
-            animation: bubbleFloat 3s ease-in-out infinite;
+            font-size: 35px;
+            animation: bubbleFloat 3.5s ease-in-out infinite;
             z-index: 1;
             filter: drop-shadow(0 0 5px #88ccff);
         }
         @keyframes bubbleFloat {
-            0%, 100% { transform: translateY(0px); opacity: 0.7; }
-            50% { transform: translateY(-10px); opacity: 1; }
+            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.6; }
+            50% { transform: translateY(-12px) scale(1.08); opacity: 1; }
         }
 
-        /* Second bubble sticker */
-        .bubble-sticker-2 {
-            position: fixed;
-            top: 12%;
-            right: 12%;
-            font-size: 30px;
-            animation: bubbleFloat2 4s ease-in-out infinite;
-            z-index: 1;
-            filter: drop-shadow(0 0 5px #88ccff);
-        }
-        @keyframes bubbleFloat2 {
-            0%, 100% { transform: translateY(0px); opacity: 0.6; }
-            50% { transform: translateY(-8px); opacity: 1; }
-        }
+        .bubble1 { top: 5%; left: 3%; animation-delay: 0s; }
+        .bubble2 { top: 12%; left: 12%; animation-delay: 0.6s; font-size: 28px; }
+        .bubble3 { top: 3%; right: 15%; animation-delay: 1.2s; font-size: 38px; }
+        .bubble4 { top: 10%; right: 5%; animation-delay: 1.8s; font-size: 30px; }
+        .bubble5 { top: 18%; left: 20%; animation-delay: 2.4s; font-size: 25px; }
+        .bubble6 { top: 8%; right: 25%; animation-delay: 3s; font-size: 32px; }
 
-        /* ========== SIMPLE FLOATING PARTICLES ========== */
+        /* Floating Particles */
         .particle {
             position: fixed;
             background: radial-gradient(circle, #ffd700, #ff8c00);
@@ -162,11 +143,12 @@
         /* Header - Ek Line Mein */
         .mods-badge {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: center;
             margin-bottom: 28px;
             gap: 10px;
             flex-wrap: wrap;
+            flex-direction: column;
         }
 
         .godx {
@@ -179,9 +161,9 @@
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
+            text-align: center;
         }
 
-        /* PREMIUM CARD SHOP - CENTER */
         .premium-tag {
             background: linear-gradient(135deg, #ffd700, #ff8c00);
             padding: 8px 20px;
@@ -190,14 +172,7 @@
             font-weight: 900;
             color: #0a0a19;
             text-align: center;
-            margin: 0 auto;
             display: inline-block;
-            width: auto;
-        }
-
-        .mods-badge {
-            justify-content: center;
-            flex-direction: column;
         }
 
         .main-title {
@@ -378,10 +353,8 @@
             .card-number { font-size: 18px; }
             .main-title { font-size: 26px; }
             .moon { width: 50px; height: 50px; top: 3%; right: 3%; }
-            .star-sticker { font-size: 30px; bottom: 3%; left: 3%; }
-            .star-sticker-2 { font-size: 25px; bottom: 5%; right: 5%; }
-            .bubble-sticker { font-size: 30px; top: 5%; left: 2%; }
-            .bubble-sticker-2 { font-size: 25px; top: 8%; right: 8%; }
+            .star-sticker { font-size: 25px; }
+            .bubble-sticker { font-size: 25px; }
         }
     </style>
 </head>
@@ -392,17 +365,25 @@
 <!-- Moon -->
 <div class="moon"></div>
 
-<!-- 🌠 Star Stickers (Niche Side) -->
-<div class="star-sticker">🌠</div>
-<div class="star-sticker-2">⭐</div>
+<!-- ========== 🌠 STAR STICKERS (NICHE SIDE - 6) ========== -->
+<div class="star-sticker star1">🌠</div>
+<div class="star-sticker star2">⭐</div>
+<div class="star-sticker star3">🌟</div>
+<div class="star-sticker star4">✨</div>
+<div class="star-sticker star5">💫</div>
+<div class="star-sticker star6">⭐</div>
 
-<!-- 🫧 Bubble Stickers (Upar Side) -->
-<div class="bubble-sticker">🫧</div>
-<div class="bubble-sticker-2">💧</div>
+<!-- ========== 🫧 BUBBLE STICKERS (UPAR SIDE - 6) ========== -->
+<div class="bubble-sticker bubble1">🫧</div>
+<div class="bubble-sticker bubble2">💧</div>
+<div class="bubble-sticker bubble3">🫧</div>
+<div class="bubble-sticker bubble4">✨</div>
+<div class="bubble-sticker bubble5">🫧</div>
+<div class="bubble-sticker bubble6">💎</div>
 
-<!-- Stars -->
+<!-- Background Stars -->
 <script>
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 120; i++) {
         const star = document.createElement('div');
         star.classList.add('star');
         const size = Math.random() * 2 + 1;
@@ -460,7 +441,7 @@
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // Simple floating particles (lightweight)
+    // Floating Particles
     function createParticle() {
         const particle = document.createElement('div');
         particle.classList.add('particle');
@@ -475,8 +456,8 @@
         setTimeout(() => particle.remove(), 8000);
     }
     
-    setInterval(createParticle, 600);
-    for (let i = 0; i < 15; i++) setTimeout(createParticle, i * 200);
+    setInterval(createParticle, 500);
+    for (let i = 0; i < 20; i++) setTimeout(createParticle, i * 150);
 
     // UPI Configuration
     const UPI_ID = "kartikrawat6266@okhdfcbank";
@@ -529,7 +510,7 @@
         showToast(`🚀 Launching UPI for ₱${currentAmount}... 🚀`, 1500);
         buyBtn.style.transform = 'scale(0.95)';
         setTimeout(() => buyBtn.style.transform = 'scale(1)', 200);
-        for (let i = 0; i < 10; i++) setTimeout(createParticle, i * 30);
+        for (let i = 0; i < 15; i++) setTimeout(createParticle, i * 30);
         openUpiApp(currentAmount);
     }
 
