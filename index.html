@@ -315,12 +315,20 @@
             cursor: pointer;
             text-align: center;
             transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         .cat-btn.active {
             background: linear-gradient(135deg, #ffd700, #ff8c00);
             color: #0a0a1a;
             border-color: transparent;
             box-shadow: 0 0 15px rgba(255, 215, 0, 0.4);
+        }
+        .cat-icon {
+            width: 20px;
+            height: 20px;
         }
 
         .terminal-card {
@@ -430,7 +438,7 @@
             letter-spacing: 1px;
         }
 
-        /* ========== REAL PLAY STORE ICON - SVG ========== */
+        /* ========== PLAY STORE CARD ICON ========== */
         .playstore-header {
             display: flex;
             align-items: center;
@@ -439,7 +447,6 @@
         .playstore-svg-icon {
             width: 32px;
             height: 32px;
-            display: inline-block;
         }
         .redeem-code {
             background: rgba(0, 0, 0, 0.4);
@@ -578,6 +585,8 @@
             .premium-moon { width: 50px; height: 50px; }
             .moon-ring { width: 65px; height: 65px; }
             .playstore-svg-icon { width: 24px; height: 24px; }
+            .cat-icon { width: 18px; height: 18px; }
+            .cat-btn { font-size: 11px; padding: 10px 0; }
             .email-input { font-size: 10px; padding: 8px 12px; }
             .buy-now { font-size: 16px; padding: 12px 0; }
         }
@@ -659,8 +668,23 @@
     </div>
 
     <div class="category-buttons">
-        <button class="cat-btn active" data-cat="master">💳 MASTER CARD</button>
-        <button class="cat-btn" data-cat="playstore">📱 PLAY STORE REDEEM CODE</button>
+        <button class="cat-btn active" data-cat="master">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <rect x="2" y="5" width="20" height="14" rx="2" stroke="currentColor" stroke-width="1.5" fill="none"/>
+                <path d="M2 9h20" stroke="currentColor" stroke-width="1.5"/>
+                <circle cx="7" cy="12" r="1.5" fill="currentColor"/>
+                <circle cx="17" cy="12" r="1.5" fill="currentColor"/>
+            </svg>
+            MASTER CARD
+        </button>
+        <button class="cat-btn" data-cat="playstore">
+            <svg class="cat-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M3 3v18l9-4.5L3 3zm18 0v18l-9-4.5L21 3z" fill="#4285F4"/>
+                <path d="M3 3l9 4.5L3 21z" fill="#EA4335"/>
+                <path d="M21 3l-9 4.5L21 21z" fill="#FBBC05"/>
+            </svg>
+            PLAY STORE REDEEM CODE
+        </button>
     </div>
 
     <div class="swipe-container" id="swipeContainer">
