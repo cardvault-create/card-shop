@@ -122,7 +122,6 @@
                 inset -8px -5px 15px rgba(0, 0, 0, 0.2),
                 inset 5px 5px 15px rgba(255, 255, 255, 0.5);
             animation: moonPulse 3s ease-in-out infinite;
-            transition: all 0.3s ease;
         }
         @keyframes moonPulse {
             0%, 100% { 
@@ -135,7 +134,7 @@
             }
         }
 
-        /* Moon Craters - Premium */
+        /* Moon Craters */
         .crater {
             position: absolute;
             background: radial-gradient(circle, rgba(180, 130, 70, 0.4), rgba(140, 100, 50, 0.2));
@@ -293,6 +292,74 @@
             100% { transform: translateY(-150px) scale(0); opacity: 0; }
         }
 
+        /* ========== BESTCHEAT TEXT BOX (Animated) ========== */
+        .bestcheat-box {
+            background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 100, 0, 0.1));
+            backdrop-filter: blur(10px);
+            border: 1.5px solid rgba(255, 215, 0, 0.5);
+            border-radius: 50px;
+            padding: 10px 24px;
+            display: inline-block;
+            animation: boxGlowPulse 2s ease-in-out infinite, boxBorderShift 3s linear infinite;
+            box-shadow: 0 0 15px rgba(255, 215, 0, 0.3);
+            white-space: nowrap;
+        }
+        @keyframes boxGlowPulse {
+            0%, 100% { 
+                box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+                border-color: rgba(255, 215, 0, 0.4);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 25px rgba(255, 215, 0, 0.7);
+                border-color: rgba(255, 215, 0, 0.9);
+                transform: scale(1.02);
+            }
+        }
+        @keyframes boxBorderShift {
+            0% { border-color: rgba(255, 215, 0, 0.4); }
+            25% { border-color: rgba(255, 100, 0, 0.6); }
+            50% { border-color: rgba(255, 215, 0, 0.8); }
+            75% { border-color: rgba(255, 100, 0, 0.6); }
+            100% { border-color: rgba(255, 215, 0, 0.4); }
+        }
+
+        .bestcheat-text {
+            font-size: 14px;
+            font-weight: 900;
+            letter-spacing: 2px;
+            background: linear-gradient(90deg, #ffd700, #ff6b35, #ff00ff, #00ffff, #ffd700);
+            background-size: 300% 100%;
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: textColorFlow 3s linear infinite;
+            text-transform: uppercase;
+            white-space: nowrap;
+        }
+        @keyframes textColorFlow {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        /* ========== PREMIUM CARD SHOP TAG ========== */
+        .premium-tag {
+            background: linear-gradient(135deg, #ffd700, #ff8c00);
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-size: 13px;
+            font-weight: 900;
+            color: #0a0a19;
+            text-align: center;
+            display: inline-block;
+            animation: tagPulse 1.5s infinite;
+            margin-top: 10px;
+        }
+        @keyframes tagPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(255, 215, 0, 0); }
+        }
+
         /* ========== MAIN CARD ========== */
         .terminal-card {
             max-width: 480px;
@@ -317,33 +384,9 @@
             justify-content: center;
             align-items: center;
             margin-bottom: 28px;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
             flex-direction: column;
-        }
-
-        .godx {
-            font-size: 12px;
-            letter-spacing: 1px;
-            color: #ffdfaa;
-            font-weight: 900;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #ffdfaa, #ffb347);
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-align: center;
-        }
-
-        .premium-tag {
-            background: linear-gradient(135deg, #ffd700, #ff8c00);
-            padding: 8px 20px;
-            border-radius: 40px;
-            font-size: 13px;
-            font-weight: 900;
-            color: #0a0a19;
-            text-align: center;
-            display: inline-block;
         }
 
         .main-title {
@@ -528,7 +571,9 @@
             .moon-outer-glow { width: 100px; height: 100px; }
             .sun-glow { width: 80px; height: 80px; }
             .top-emoji, .bottom-emoji { font-size: 22px; }
-            .crater1, .crater2, .crater3, .crater4, .crater5, .crater6, .crater7, .crater8 { transform: scale(0.7); }
+            .bestcheat-text { font-size: 9px; letter-spacing: 1px; }
+            .bestcheat-box { padding: 6px 12px; }
+            .premium-tag { font-size: 10px; padding: 5px 12px; }
         }
     </style>
 </head>
@@ -546,7 +591,6 @@
     <div class="moon-outer-glow"></div>
     <div class="moon-ring"></div>
     <div class="premium-moon">
-        <!-- Moon Craters -->
         <div class="crater crater1"></div>
         <div class="crater crater2"></div>
         <div class="crater crater3"></div>
@@ -555,8 +599,6 @@
         <div class="crater crater6"></div>
         <div class="crater crater7"></div>
         <div class="crater crater8"></div>
-        
-        <!-- Moon Dust Particles -->
         <div class="moon-dust dust1"></div>
         <div class="moon-dust dust2"></div>
         <div class="moon-dust dust3"></div>
@@ -566,7 +608,7 @@
     </div>
 </div>
 
-<!-- ========== TOP EMOJIS (Upar se Niche jayenge) ========== -->
+<!-- ========== TOP EMOJIS ========== -->
 <div class="top-emoji t1">🫧</div>
 <div class="top-emoji t2">🍂</div>
 <div class="top-emoji t3">❄️</div>
@@ -576,7 +618,7 @@
 <div class="top-emoji t7">🛸</div>
 <div class="top-emoji t8">✈️</div>
 
-<!-- ========== BOTTOM EMOJIS (Niche se Upar jayenge) ========== -->
+<!-- ========== BOTTOM EMOJIS ========== -->
 <div class="bottom-emoji b1">🌠</div>
 <div class="bottom-emoji b2">🌌</div>
 <div class="bottom-emoji b3">🪩</div>
@@ -605,8 +647,12 @@
 <!-- Main Card -->
 <div class="terminal-card">
     <div class="mods-badge">
-        <span class="godx">🔥 BeStChEat CarD AnD PlaY StoRe ReDeeM CodE ShoP 🔥</span>
-        <span class="premium-tag">✦ PREMIUM CARD SHOP ✦</span>
+        <!-- BestCheat Text in Animated Box -->
+        <div class="bestcheat-box">
+            <span class="bestcheat-text">🔥 BESTCHEAT CARD AND PLAY STORE REDEEM CODE SHOP 🔥</span>
+        </div>
+        <!-- Premium Card Shop Tag -->
+        <div class="premium-tag">✦ PREMIUM CARD SHOP ✦</div>
     </div>
     <div class="main-title">VIRTUAL TERMINAL</div>
     <div class="sub">secure • instant • epic</div>
