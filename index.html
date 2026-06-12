@@ -65,61 +65,70 @@
             50% { opacity: 1; }
         }
 
-        /* ========== 🌠 STAR STICKERS (NICHE SIDE - 6 STICKERS) ========== */
+        /* ========== STICKERS CONTAINER WITH BOX ========== */
+        .stickers-container {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 15px;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+            padding: 12px 25px;
+            border-radius: 60px;
+            border: 1px solid rgba(255, 215, 0, 0.4);
+            z-index: 100;
+            animation: boxGlow 2s ease-in-out infinite;
+        }
+        @keyframes boxGlow {
+            0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); border-color: rgba(255, 215, 0, 0.4); }
+            50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); border-color: rgba(255, 215, 0, 0.8); }
+        }
+
+        /* Star Stickers in Box */
         .star-sticker {
-            position: fixed;
-            font-size: 35px;
-            animation: starFloat 4s ease-in-out infinite;
-            z-index: 1;
-            filter: drop-shadow(0 0 8px #ffd700);
+            font-size: 28px;
+            animation: starSpin 3s ease-in-out infinite;
+            filter: drop-shadow(0 0 5px #ffd700);
+            cursor: pointer;
+            transition: transform 0.2s;
         }
-        @keyframes starFloat {
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.7; }
-            50% { transform: translateY(-8px) rotate(10deg); opacity: 1; }
+        .star-sticker:hover {
+            transform: scale(1.2);
+        }
+        @keyframes starSpin {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(10deg) scale(1.1); }
         }
 
-        /* Different delays for each star */
-        .star1 { bottom: 3%; left: 2%; animation-delay: 0s; }
-        .star2 { bottom: 8%; left: 15%; animation-delay: 0.5s; font-size: 28px; }
-        .star3 { bottom: 2%; right: 5%; animation-delay: 1s; font-size: 40px; }
-        .star4 { bottom: 10%; right: 18%; animation-delay: 1.5s; font-size: 25px; }
-        .star5 { bottom: 15%; left: 25%; animation-delay: 2s; font-size: 30px; }
-        .star6 { bottom: 5%; right: 30%; animation-delay: 2.5s; font-size: 32px; }
-
-        /* ========== 🫧 BUBBLE STICKERS (UPAR SIDE - 6 STICKERS) ========== */
+        /* Bubble Stickers in Box */
         .bubble-sticker {
-            position: fixed;
-            font-size: 35px;
-            animation: bubbleFloat 3.5s ease-in-out infinite;
-            z-index: 1;
+            font-size: 28px;
+            animation: bubbleBounce 3s ease-in-out infinite;
             filter: drop-shadow(0 0 5px #88ccff);
+            cursor: pointer;
+            transition: transform 0.2s;
         }
-        @keyframes bubbleFloat {
-            0%, 100% { transform: translateY(0px) scale(1); opacity: 0.6; }
-            50% { transform: translateY(-12px) scale(1.08); opacity: 1; }
+        .bubble-sticker:hover {
+            transform: scale(1.15);
+        }
+        @keyframes bubbleBounce {
+            0%, 100% { transform: translateY(0px) scale(1); }
+            50% { transform: translateY(-8px) scale(1.08); }
         }
 
-        .bubble1 { top: 5%; left: 3%; animation-delay: 0s; }
-        .bubble2 { top: 12%; left: 12%; animation-delay: 0.6s; font-size: 28px; }
-        .bubble3 { top: 3%; right: 15%; animation-delay: 1.2s; font-size: 38px; }
-        .bubble4 { top: 10%; right: 5%; animation-delay: 1.8s; font-size: 30px; }
-        .bubble5 { top: 18%; left: 20%; animation-delay: 2.4s; font-size: 25px; }
-        .bubble6 { top: 8%; right: 25%; animation-delay: 3s; font-size: 32px; }
-
-        /* Floating Particles */
-        .particle {
-            position: fixed;
-            background: radial-gradient(circle, #ffd700, #ff8c00);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: floatUp 6s ease-in-out infinite;
-            z-index: 0;
+        /* Divider Line */
+        .divider-line {
+            width: 2px;
+            height: 35px;
+            background: linear-gradient(180deg, #ffd700, #ff6b35, #ffd700);
+            margin: 0 5px;
+            animation: linePulse 1.5s ease-in-out infinite;
         }
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            20% { opacity: 0.6; }
-            80% { opacity: 0.3; }
-            100% { transform: translateY(-150px) scale(0); opacity: 0; }
+        @keyframes linePulse {
+            0%, 100% { opacity: 0.4; height: 25px; }
+            50% { opacity: 1; height: 35px; }
         }
 
         /* ========== MAIN CARD ========== */
@@ -140,7 +149,7 @@
             transform: translateY(-5px);
         }
 
-        /* Header - Ek Line Mein */
+        /* Header */
         .mods-badge {
             display: flex;
             justify-content: center;
@@ -151,17 +160,24 @@
             flex-direction: column;
         }
 
+        /* BestCheat Text - Colour Changing Animation */
         .godx {
-            font-size: 12px;
-            letter-spacing: 1px;
-            color: #ffdfaa;
+            font-size: 14px;
+            letter-spacing: 2px;
             font-weight: 900;
             text-transform: uppercase;
-            background: linear-gradient(135deg, #ffdfaa, #ffb347);
+            text-align: center;
+            padding: 10px 20px;
+            background: linear-gradient(90deg, #ffd700, #ff6b35, #ff00ff, #00ffff, #ffd700);
+            background-size: 300% 100%;
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            text-align: center;
+            animation: colorChange 3s linear infinite;
+        }
+        @keyframes colorChange {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
         }
 
         .premium-tag {
@@ -173,6 +189,11 @@
             color: #0a0a19;
             text-align: center;
             display: inline-block;
+            animation: tagPulse 1.5s infinite;
+        }
+        @keyframes tagPulse {
+            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
+            50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(255, 215, 0, 0); }
         }
 
         .main-title {
@@ -184,6 +205,11 @@
             color: transparent;
             margin-bottom: 8px;
             text-align: center;
+            animation: titleGlow 2s ease-in-out infinite;
+        }
+        @keyframes titleGlow {
+            0%, 100% { filter: drop-shadow(0 0 5px #ffd700); }
+            50% { filter: drop-shadow(0 0 15px #ff6b35); }
         }
 
         .sub {
@@ -335,7 +361,7 @@
 
         .toast-msg {
             position: fixed;
-            bottom: 30px;
+            bottom: 100px;
             left: 50%;
             transform: translateX(-50%);
             background: linear-gradient(135deg, #ffd700, #ff8c00);
@@ -348,13 +374,31 @@
             display: none;
         }
 
+        /* Floating Particles */
+        .particle {
+            position: fixed;
+            background: radial-gradient(circle, #ffd700, #ff8c00);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatUp 6s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.3; }
+            100% { transform: translateY(-150px) scale(0); opacity: 0; }
+        }
+
         @media (max-width: 550px) {
             .terminal-card { padding: 20px 18px 28px; }
             .card-number { font-size: 18px; }
             .main-title { font-size: 26px; }
             .moon { width: 50px; height: 50px; top: 3%; right: 3%; }
-            .star-sticker { font-size: 25px; }
-            .bubble-sticker { font-size: 25px; }
+            .stickers-container { padding: 8px 18px; gap: 10px; bottom: 15px; }
+            .star-sticker, .bubble-sticker { font-size: 22px; }
+            .divider-line { height: 25px; }
+            .toast-msg { bottom: 85px; }
         }
     </style>
 </head>
@@ -365,21 +409,25 @@
 <!-- Moon -->
 <div class="moon"></div>
 
-<!-- ========== 🌠 STAR STICKERS (NICHE SIDE - 6) ========== -->
-<div class="star-sticker star1">🌠</div>
-<div class="star-sticker star2">⭐</div>
-<div class="star-sticker star3">🌟</div>
-<div class="star-sticker star4">✨</div>
-<div class="star-sticker star5">💫</div>
-<div class="star-sticker star6">⭐</div>
-
-<!-- ========== 🫧 BUBBLE STICKERS (UPAR SIDE - 6) ========== -->
-<div class="bubble-sticker bubble1">🫧</div>
-<div class="bubble-sticker bubble2">💧</div>
-<div class="bubble-sticker bubble3">🫧</div>
-<div class="bubble-sticker bubble4">✨</div>
-<div class="bubble-sticker bubble5">🫧</div>
-<div class="bubble-sticker bubble6">💎</div>
+<!-- ========== STICKERS IN BOX WITH LINE ========== -->
+<div class="stickers-container">
+    <!-- Star Stickers -->
+    <div class="star-sticker">🌠</div>
+    <div class="star-sticker">⭐</div>
+    <div class="star-sticker">🌟</div>
+    <div class="star-sticker">✨</div>
+    <div class="star-sticker">💫</div>
+    
+    <!-- Divider Line -->
+    <div class="divider-line"></div>
+    
+    <!-- Bubble Stickers -->
+    <div class="bubble-sticker">🫧</div>
+    <div class="bubble-sticker">💧</div>
+    <div class="bubble-sticker">🫧</div>
+    <div class="bubble-sticker">✨</div>
+    <div class="bubble-sticker">💎</div>
+</div>
 
 <!-- Background Stars -->
 <script>
@@ -400,7 +448,8 @@
 <!-- Main Card -->
 <div class="terminal-card">
     <div class="mods-badge">
-        <span class="godx">🔥 BeStChEat CarD AnD PlaY StoRe ReDeeM CodE ShoP 🔥</span>
+        <!-- BestCheat Text - Colour Changing Animation -->
+        <span class="godx">🔥 BESTCHEAT CARD AND PLAY STORE REDEEM CODE SHOP 🔥</span>
         <span class="premium-tag">✦ PREMIUM CARD SHOP ✦</span>
     </div>
     <div class="main-title">VIRTUAL TERMINAL</div>
