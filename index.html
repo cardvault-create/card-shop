@@ -96,23 +96,115 @@
             50% { transform: translateX(30%) skewX(-10deg); opacity: 0.6; }
         }
 
-        /* ========== MOON ANIMATION ========== */
-        .moon {
+        /* ========== ULTRA PREMIUM MOON ========== */
+        .moon-container {
             position: fixed;
             top: 5%;
             right: 5%;
-            width: 80px;
-            height: 80px;
-            background: radial-gradient(circle at 30% 30%, #fffbe6, #ffe6a3);
+            z-index: 2;
+            animation: moonContainerFloat 6s ease-in-out infinite;
+        }
+        @keyframes moonContainerFloat {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-12px); }
+        }
+
+        .premium-moon {
+            position: relative;
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle at 35% 35%, #fff8e7, #ffe6b3, #ffd89a);
             border-radius: 50%;
-            box-shadow: 0 0 20px rgba(255, 230, 150, 0.6);
-            animation: moonGlow 3s ease-in-out infinite;
-            z-index: 1;
+            box-shadow: 
+                0 0 20px rgba(255, 235, 170, 0.8),
+                0 0 40px rgba(255, 220, 100, 0.5),
+                0 0 80px rgba(255, 200, 80, 0.3),
+                inset -8px -5px 15px rgba(0, 0, 0, 0.2),
+                inset 5px 5px 15px rgba(255, 255, 255, 0.5);
+            animation: moonPulse 3s ease-in-out infinite;
+            transition: all 0.3s ease;
         }
-        @keyframes moonGlow {
-            0%, 100% { box-shadow: 0 0 15px rgba(255, 230, 150, 0.4); transform: scale(1); }
-            50% { box-shadow: 0 0 35px rgba(255, 230, 150, 0.9); transform: scale(1.02); }
+        @keyframes moonPulse {
+            0%, 100% { 
+                box-shadow: 0 0 20px rgba(255, 235, 170, 0.6), 0 0 40px rgba(255, 220, 100, 0.4), 0 0 70px rgba(255, 200, 80, 0.2), inset -8px -5px 15px rgba(0, 0, 0, 0.2), inset 5px 5px 15px rgba(255, 255, 255, 0.5);
+                transform: scale(1);
+            }
+            50% { 
+                box-shadow: 0 0 35px rgba(255, 235, 170, 1), 0 0 60px rgba(255, 220, 100, 0.8), 0 0 100px rgba(255, 200, 80, 0.5), inset -8px -5px 15px rgba(0, 0, 0, 0.2), inset 5px 5px 15px rgba(255, 255, 255, 0.6);
+                transform: scale(1.02);
+            }
         }
+
+        /* Moon Craters - Premium */
+        .crater {
+            position: absolute;
+            background: radial-gradient(circle, rgba(180, 130, 70, 0.4), rgba(140, 100, 50, 0.2));
+            border-radius: 50%;
+            box-shadow: inset 1px 1px 3px rgba(0, 0, 0, 0.2), 0 0 2px rgba(255, 255, 200, 0.3);
+        }
+        .crater1 { width: 18px; height: 18px; top: 15%; left: 12%; }
+        .crater2 { width: 12px; height: 12px; top: 45%; left: 25%; }
+        .crater3 { width: 22px; height: 22px; bottom: 20%; right: 15%; }
+        .crater4 { width: 10px; height: 10px; top: 60%; right: 35%; }
+        .crater5 { width: 14px; height: 14px; top: 25%; right: 25%; }
+        .crater6 { width: 8px; height: 8px; bottom: 40%; left: 30%; }
+        .crater7 { width: 16px; height: 16px; top: 70%; left: 15%; }
+        .crater8 { width: 9px; height: 9px; bottom: 15%; left: 45%; }
+
+        /* Moon Glow Ring */
+        .moon-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: transparent;
+            border: 2px solid rgba(255, 230, 150, 0.3);
+            transform: translate(-50%, -50%);
+            animation: ringPulse 3s ease-in-out infinite;
+        }
+        @keyframes ringPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(0.9); opacity: 0.3; border-width: 2px; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.7; border-width: 3px; }
+        }
+
+        /* Moon Outer Glow */
+        .moon-outer-glow {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 140px;
+            height: 140px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(255, 230, 150, 0.15), transparent);
+            transform: translate(-50%, -50%);
+            animation: outerGlow 3s ease-in-out infinite;
+        }
+        @keyframes outerGlow {
+            0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.3; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 0.6; }
+        }
+
+        /* Floating Moon Dust Particles */
+        .moon-dust {
+            position: absolute;
+            background: radial-gradient(circle, #ffefb3, #ffd580);
+            border-radius: 50%;
+            animation: moonDustFloat 4s ease-in-out infinite;
+        }
+        @keyframes moonDustFloat {
+            0%, 100% { transform: translate(0, 0) scale(1); opacity: 0; }
+            30% { opacity: 0.8; }
+            70% { opacity: 0.4; }
+            100% { transform: translate(-20px, -30px) scale(0); opacity: 0; }
+        }
+        .dust1 { width: 3px; height: 3px; top: 10%; left: 80%; animation-delay: 0s; }
+        .dust2 { width: 2px; height: 2px; top: 70%; left: 20%; animation-delay: 1s; }
+        .dust3 { width: 4px; height: 4px; top: 30%; left: 85%; animation-delay: 2s; }
+        .dust4 { width: 2px; height: 2px; top: 85%; left: 30%; animation-delay: 3s; }
+        .dust5 { width: 3px; height: 3px; top: 50%; left: 90%; animation-delay: 1.5s; }
+        .dust6 { width: 2px; height: 2px; top: 15%; left: 15%; animation-delay: 2.5s; }
 
         /* ========== STARS BACKGROUND ========== */
         .star {
@@ -431,9 +523,12 @@
             .terminal-card { padding: 20px 18px 28px; }
             .card-number { font-size: 18px; }
             .main-title { font-size: 26px; }
-            .moon { width: 50px; height: 50px; top: 3%; right: 3%; }
+            .premium-moon { width: 60px; height: 60px; }
+            .moon-ring { width: 85px; height: 85px; }
+            .moon-outer-glow { width: 100px; height: 100px; }
             .sun-glow { width: 80px; height: 80px; }
             .top-emoji, .bottom-emoji { font-size: 22px; }
+            .crater1, .crater2, .crater3, .crater4, .crater5, .crater6, .crater7, .crater8 { transform: scale(0.7); }
         }
     </style>
 </head>
@@ -446,11 +541,32 @@
 <div class="sun-glow"></div>
 <div class="aurora"></div>
 
-<!-- Moon -->
-<div class="moon"></div>
+<!-- ========== ULTRA PREMIUM MOON ========== -->
+<div class="moon-container">
+    <div class="moon-outer-glow"></div>
+    <div class="moon-ring"></div>
+    <div class="premium-moon">
+        <!-- Moon Craters -->
+        <div class="crater crater1"></div>
+        <div class="crater crater2"></div>
+        <div class="crater crater3"></div>
+        <div class="crater crater4"></div>
+        <div class="crater crater5"></div>
+        <div class="crater crater6"></div>
+        <div class="crater crater7"></div>
+        <div class="crater crater8"></div>
+        
+        <!-- Moon Dust Particles -->
+        <div class="moon-dust dust1"></div>
+        <div class="moon-dust dust2"></div>
+        <div class="moon-dust dust3"></div>
+        <div class="moon-dust dust4"></div>
+        <div class="moon-dust dust5"></div>
+        <div class="moon-dust dust6"></div>
+    </div>
+</div>
 
 <!-- ========== TOP EMOJIS (Upar se Niche jayenge) ========== -->
-<!-- Emojis: 🫧 🍂 ❄️ 🌈 🏞️ 🍓 🛸 ✈️ -->
 <div class="top-emoji t1">🫧</div>
 <div class="top-emoji t2">🍂</div>
 <div class="top-emoji t3">❄️</div>
@@ -461,7 +577,6 @@
 <div class="top-emoji t8">✈️</div>
 
 <!-- ========== BOTTOM EMOJIS (Niche se Upar jayenge) ========== -->
-<!-- Emojis: 🌠 🌌 🪩 🪙 🧬 🧿 ㊗️ 🏁 -->
 <div class="bottom-emoji b1">🌠</div>
 <div class="bottom-emoji b2">🌌</div>
 <div class="bottom-emoji b3">🪩</div>
