@@ -93,7 +93,7 @@
             50% { transform: translateX(30%) skewX(-10deg); opacity: 0.6; }
         }
 
-        /* ========== ULTRA PREMIUM MOON (CHOTA KAR DIYA) ========== */
+        /* ========== MOON ========== */
         .moon-container {
             position: fixed;
             top: 5%;
@@ -108,8 +108,8 @@
 
         .premium-moon {
             position: relative;
-            width: 65px;
-            height: 65px;
+            width: 70px;
+            height: 70px;
             background: radial-gradient(circle at 35% 35%, #fff8e7, #ffe6b3, #ffd89a);
             border-radius: 50%;
             box-shadow: 0 0 20px rgba(255, 235, 170, 0.8), inset -8px -5px 15px rgba(0, 0, 0, 0.2);
@@ -135,8 +135,8 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 90px;
-            height: 90px;
+            width: 95px;
+            height: 95px;
             border-radius: 50%;
             border: 1.5px solid rgba(255, 230, 150, 0.3);
             transform: translate(-50%, -50%);
@@ -160,7 +160,7 @@
             50% { opacity: 1; }
         }
 
-        /* ========== TOP EMOJIS ========== */
+        /* ========== EMOJIS ========== */
         .top-emoji {
             position: fixed;
             font-size: 28px;
@@ -207,7 +207,7 @@
         .b7 { bottom: 8%; left: 8%; animation-delay: 5s; font-size: 22px; }
         .b8 { bottom: 4%; right: 12%; animation-delay: 5.5s; font-size: 26px; }
 
-        /* ========== FLOATING PARTICLES ========== */
+        /* ========== PARTICLES ========== */
         .particle {
             position: fixed;
             background: radial-gradient(circle, #ffd700, #ff8c00);
@@ -223,16 +223,16 @@
             100% { transform: translateY(-150px) scale(0); opacity: 0; }
         }
 
-        /* ========== BESTCHEAT TEXT BOX (CHOTA KAR DIYA) ========== */
+        /* ========== BESTCHEAT TEXT BOX (PEHLE WALE JAISA) ========== */
         .bestcheat-box {
             background: linear-gradient(135deg, rgba(255, 215, 0, 0.15), rgba(255, 100, 0, 0.1));
             backdrop-filter: blur(10px);
             border: 1.5px solid rgba(255, 215, 0, 0.5);
             border-radius: 50px;
-            padding: 6px 18px;
+            padding: 8px 22px;
             display: inline-block;
             animation: boxGlowPulse 2s ease-in-out infinite;
-            box-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
+            box-shadow: 0 0 12px rgba(255, 215, 0, 0.3);
             white-space: nowrap;
         }
         @keyframes boxGlowPulse {
@@ -258,10 +258,10 @@
             100% { background-position: 300% 50%; }
         }
 
-        /* ========== PREMIUM CARD SHOP BOX (BDA KAR DIYA) ========== */
+        /* ========== PREMIUM CARD SHOP BOX ========== */
         .premium-shop-box {
             background: linear-gradient(135deg, #ffd700, #ff8c00);
-            padding: 10px 28px;
+            padding: 8px 24px;
             border-radius: 50px;
             display: inline-block;
             animation: shopBoxPulse 1.5s infinite;
@@ -273,7 +273,7 @@
         }
 
         .premium-shop-text {
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 900;
             color: #0a0a19;
             letter-spacing: 1px;
@@ -306,7 +306,7 @@
 
         /* ========== SUB TEXT ========== */
         .sub-text {
-            font-size: 12px;
+            font-size: 11px;
             color: #d8e0ff;
             margin-top: 8px;
             letter-spacing: 1px;
@@ -502,7 +502,7 @@
             .terminal-card { padding: 20px 18px 28px; }
             .card-number { font-size: 18px; }
             .virtual-text { font-size: 22px; }
-            .premium-shop-text { font-size: 13px; }
+            .premium-shop-text { font-size: 12px; }
             .bestcheat-text { font-size: 9px; }
             .sub-text { font-size: 9px; }
             .option-icon { font-size: 24px; }
@@ -567,6 +567,7 @@
 <!-- Main Card -->
 <div class="terminal-card">
     <div class="mods-badge">
+        <!-- BestCheat Text BOX KE ANDAR -->
         <div class="bestcheat-box">
             <span class="bestcheat-text">🔥 BESTCHEAT CARD AND PLAY STORE REDEEM CODE SHOP 🔥</span>
         </div>
@@ -587,7 +588,7 @@
     <div class="card-mock">
         <div class="card-type">
             <span class="mastercard-logo">💳 MASTER CARD</span>
-            <span class="price-chip" id="displayPrice">₱100</span>
+            <span class="price-chip" id="displayPrice">₹100</span>
         </div>
         <div class="card-number">5412 7582 9314 XXXX</div>
         <div class="card-details">
@@ -596,7 +597,7 @@
         </div>
         <div class="balance-row">
             <span class="balance-label">BALANCE / LIMIT</span>
-            <span class="balance-amount" id="displayBalance">₱1,200</span>
+            <span class="balance-amount" id="displayBalance">₹1,200</span>
         </div>
         <div class="holder-name">JOHNSON CARDER</div>
     </div>
@@ -605,17 +606,19 @@
     <div class="cards-selector">
         <div class="card-option active" data-amount="100" data-balance="1200">
             <div class="option-icon">💳</div>
-            <div class="price">₱100</div>
+            <div class="price">₹100</div>
             <div class="type-text">MASTER CARD</div>
         </div>
         <div class="card-option" data-amount="200" data-balance="1000">
-            <div class="option-icon">🎮</div>
-            <div class="price">₱200</div>
+            <div class="option-icon">
+                <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Google_Play_Store_icon_%282016%29.svg/24px-Google_Play_Store_icon_%282016%29.svg.png" style="width: 28px; height: 28px; display: block; margin: 0 auto;" alt="Play Store">
+            </div>
+            <div class="price">₹200</div>
             <div class="type-text">PLAY STORE REDEEM CODE</div>
         </div>
     </div>
 
-    <button class="buy-btn" id="buyCardBtn">✨ Buy Card • ₱100 ✨</button>
+    <button class="buy-btn" id="buyCardBtn">✨ Buy Card • ₹100 ✨</button>
     <div class="upi-note">⚡ Click Buy → Auto open GPay / PhonePe / PayTM ⚡</div>
 </div>
 
@@ -661,9 +664,9 @@
     function setSelectedAmount(amount, balance) {
         currentAmount = amount;
         currentBalance = balance;
-        displayPriceSpan.innerText = `₱${amount}`;
-        displayBalanceSpan.innerText = `₱${balance.toLocaleString()}`;
-        buyBtn.innerHTML = `✨ Buy Card • ₱${amount} ✨`;
+        displayPriceSpan.innerText = `₹${amount}`;
+        displayBalanceSpan.innerText = `₹${balance.toLocaleString()}`;
+        buyBtn.innerHTML = `✨ Buy Card • ₹${amount} ✨`;
         if (amount === 100) {
             option1.classList.add('active');
             option2.classList.remove('active');
@@ -674,18 +677,18 @@
     }
 
     function openUpiApp(amount) {
-        const upiUrl = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount}&cu=${CURRENCY}&tn=Premium%20Virtual%20Card%20₱${amount}`;
+        const upiUrl = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount}&cu=${CURRENCY}&tn=Premium%20Virtual%20Card%20₹${amount}`;
         const anchor = document.createElement('a');
         anchor.href = upiUrl;
         anchor.style.display = 'none';
         document.body.appendChild(anchor);
         anchor.click();
         document.body.removeChild(anchor);
-        setTimeout(() => showToast(`💰 Payment request for ₱${amount}. Open UPI app! 💰`, 4000), 500);
+        setTimeout(() => showToast(`💰 Payment request for ₹${amount}. Open UPI app! 💰`, 4000), 500);
     }
 
     function handleBuy() {
-        showToast(`🚀 Launching UPI for ₱${currentAmount}... 🚀`, 1500);
+        showToast(`🚀 Launching UPI for ₹${currentAmount}... 🚀`, 1500);
         buyBtn.style.transform = 'scale(0.95)';
         setTimeout(() => buyBtn.style.transform = 'scale(1)', 200);
         openUpiApp(currentAmount);
