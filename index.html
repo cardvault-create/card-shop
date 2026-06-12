@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-    <title>GOD X MODS PREMIUM | Virtual Terminal</title>
+    <title>GOD X MODS | Direct UPI Payment</title>
     <style>
         * {
             margin: 0;
@@ -21,7 +21,6 @@
             padding: 20px;
         }
 
-        /* Main Card Container */
         .terminal-card {
             max-width: 480px;
             width: 100%;
@@ -29,10 +28,8 @@
             border-radius: 48px;
             padding: 24px 22px 32px;
             box-shadow: 0 25px 45px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.05);
-            transition: all 0.2s ease;
         }
 
-        /* Header */
         .mods-badge {
             display: flex;
             justify-content: space-between;
@@ -57,7 +54,6 @@
         .main-title {
             font-size: 28px;
             font-weight: 700;
-            letter-spacing: -0.3px;
             background: linear-gradient(135deg, #ffffff, #c0c7e0);
             -webkit-background-clip: text;
             background-clip: text;
@@ -72,13 +68,11 @@
             padding-left: 10px;
         }
 
-        /* Credit Card Mockup */
         .card-mock {
             background: linear-gradient(125deg, #1b1f2e, #0f1119);
             border-radius: 32px;
             padding: 18px 22px 22px;
             margin-bottom: 28px;
-            box-shadow: 0 12px 20px -8px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255,255,255,0.05);
             border: 1px solid rgba(255,255,255,0.08);
         }
         .card-type {
@@ -90,7 +84,6 @@
         .mastercard-logo {
             font-weight: 800;
             font-size: 22px;
-            letter-spacing: 2px;
             background: linear-gradient(135deg, #eb001b, #f79e1b);
             -webkit-background-clip: text;
             background-clip: text;
@@ -111,7 +104,6 @@
             font-family: monospace;
             margin-bottom: 20px;
             color: #eef3ff;
-            word-break: break-all;
         }
         .card-details {
             display: flex;
@@ -123,6 +115,7 @@
             font-weight: 600;
             color: #dce3ff;
             text-transform: uppercase;
+            margin-top: 12px;
         }
         .balance-row {
             margin-top: 18px;
@@ -143,7 +136,6 @@
             color: #f5cd7a;
         }
 
-        /* Buttons Section */
         .cards-selector {
             display: flex;
             gap: 16px;
@@ -203,61 +195,27 @@
             margin-top: 22px;
         }
 
-        /* QR Modal (lightbox style) */
-        .qr-overlay {
+        /* Toast message */
+        .toast-msg {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(8px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 1000;
-            visibility: hidden;
-            opacity: 0;
-            transition: 0.2s;
-        }
-        .qr-overlay.active {
-            visibility: visible;
-            opacity: 1;
-        }
-        .qr-box {
-            background: #ffffff;
-            border-radius: 48px;
-            padding: 28px 24px 32px;
-            max-width: 340px;
-            width: 90%;
-            text-align: center;
-            box-shadow: 0 30px 40px black;
-        }
-        .qr-box img {
-            width: 100%;
-            max-width: 240px;
-            margin: 12px auto;
-            border-radius: 24px;
-        }
-        .qr-amount {
-            font-size: 28px;
-            font-weight: 800;
-            margin: 10px 0;
-        }
-        .close-qr {
-            margin-top: 18px;
-            background: #1e1f2c;
-            color: white;
-            border: none;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1e2337;
+            color: #ffdfa5;
             padding: 12px 24px;
-            border-radius: 40px;
-            font-weight: 600;
-            width: 100%;
-            cursor: pointer;
+            border-radius: 60px;
+            font-size: 14px;
+            font-weight: 500;
+            z-index: 2000;
+            display: none;
+            box-shadow: 0 4px 12px black;
+            white-space: nowrap;
         }
         @media (max-width: 480px) {
             .terminal-card { padding: 20px 16px 26px; }
             .card-number { font-size: 18px; letter-spacing: 2px; }
+            .toast-msg { font-size: 12px; white-space: normal; text-align: center; width: 80%; }
         }
     </style>
 </head>
@@ -269,9 +227,8 @@
         <span class="premium-tag">PREMIUM VT</span>
     </div>
     <div class="main-title">VIRTUAL TERMINAL</div>
-    <div class="sub">secure • instant • cardless</div>
+    <div class="sub">instant • direct UPI</div>
 
-    <!-- Credit Card Display -->
     <div class="card-mock">
         <div class="card-type">
             <span class="mastercard-logo">MASTER CARD</span>
@@ -286,10 +243,9 @@
             <span class="balance-label">BALANCE / LIMIT</span>
             <span class="balance-amount" id="displayBalance">₱5,000</span>
         </div>
-        <div class="holder-name" style="margin-top: 12px;">ROHIT SHARMA</div>
+        <div class="holder-name">ROHIT SHARMA</div>
     </div>
 
-    <!-- Amount Selector same as screen -->
     <div class="cards-selector">
         <div class="card-option" data-amount="150" data-balance="5000">
             <div class="price">₱150</div>
@@ -301,59 +257,38 @@
         </div>
     </div>
 
-    <!-- Buy Card Button -->
     <button class="buy-btn" id="buyCardBtn">💳 Buy Card • ₱150</button>
-    <div class="upi-note">🔐 UPI Secure • instant credit to merchant</div>
+    <div class="upi-note">⚡ Click Buy → Auto open Google Pay / PhonePe / PayTM</div>
 </div>
 
-<!-- QR Modal Popup -->
-<div id="qrModal" class="qr-overlay">
-    <div class="qr-box">
-        <div style="font-weight: 700; font-size: 20px;">Scan to Pay</div>
-        <div id="qrAmountDisplay" class="qr-amount">₱0</div>
-        <div id="qrCodeImage">Loading QR...</div>
-        <button class="close-qr" id="closeQrBtn">Close</button>
-    </div>
-</div>
+<div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // ---------- Configuration ----------
+    // CONFIGURATION
     const UPI_ID = "kartikrawat6266@okhdfcbank";
     const MERCHANT_NAME = "GODXMODS";
-    const CURRENCY = "INR";   // INR for indian UPI (PHP wale style ke liye design but QR INR me kaam karega)
+    const CURRENCY = "INR";
 
-    // Elements
+    let currentAmount = 150;
+    let currentBalance = 5000;
+
+    // DOM elements
     const option150 = document.querySelector('.card-option[data-amount="150"]');
     const option200 = document.querySelector('.card-option[data-amount="200"]');
     const buyBtn = document.getElementById('buyCardBtn');
     const displayPriceSpan = document.getElementById('displayPrice');
     const displayBalanceSpan = document.getElementById('displayBalance');
-    const qrModal = document.getElementById('qrModal');
-    const qrAmountDisplay = document.getElementById('qrAmountDisplay');
-    const qrCodeContainer = document.getElementById('qrCodeImage');
-    const closeQrBtn = document.getElementById('closeQrBtn');
+    const toastMsg = document.getElementById('toastMsg');
 
-    let currentAmount = 150;   // default 150
-    let currentBalance = 5000;
-
-    // Helper to generate UPI QR Code URL (deep link / actual QR)
-    function generateUPIUrl(amount) {
-        // Standard UPI Intent/QR format
-        // pa=payee-vpa, pn=payee name, am=amount, cu=INR
-        const payeeName = MERCHANT_NAME;
-        const encodedName = encodeURIComponent(payeeName);
-        const upiLink = `upi://pay?pa=${UPI_ID}&pn=${encodedName}&am=${amount}&cu=${CURRENCY}&mc=0000`;
-        return upiLink;
+    function showToast(message, duration = 2500) {
+        toastMsg.textContent = message;
+        toastMsg.style.display = 'block';
+        setTimeout(() => {
+            toastMsg.style.display = 'none';
+        }, duration);
     }
 
-    // Convert upi link to QR code using Google Charts or quickchart.io (reliable & free)
-    function getQRCodeImageUrl(upiUrl) {
-        // using quickchart.io to generate clean QR
-        const encodedUpi = encodeURIComponent(upiUrl);
-        return `https://quickchart.io/qr?text=${encodedUpi}&size=280&margin=2&dark=000000&light=ffffff`;
-    }
-
-    // Update UI according to selected amount
+    // Update UI
     function setSelectedAmount(amount, balance) {
         currentAmount = amount;
         currentBalance = balance;
@@ -361,7 +296,6 @@
         displayBalanceSpan.innerText = `₱${balance}`;
         buyBtn.innerHTML = `💳 Buy Card • ₱${amount}`;
 
-        // active class toggle
         if(amount === 150) {
             option150.classList.add('active');
             option200.classList.remove('active');
@@ -371,45 +305,96 @@
         }
     }
 
-    // Handle Buy button -> show QR with exact amount
-    function handleBuy() {
-        // Display modal with QR
-        const amountToPay = currentAmount;
-        qrAmountDisplay.innerText = `₱${amountToPay} (INR ${amountToPay})`;  // design match
+    // Generate UPI Intent URL (opens app directly)
+    function getUPIIntentURL(amount) {
+        // Standard upi:// intent link for PhonePe, GPay, PayTM
+        const payeeName = MERCHANT_NAME;
+        const note = `Payment for Virtual Card ₱${amount}`;
+        const encodedName = encodeURIComponent(payeeName);
+        const encodedNote = encodeURIComponent(note);
         
-        const upiDeepLink = generateUPIUrl(amountToPay);
-        const qrImageUrl = getQRCodeImageUrl(upiDeepLink);
-        
-        qrCodeContainer.innerHTML = `<img src="${qrImageUrl}" alt="UPI QR Code" style="width:100%; max-width:260px; border-radius:24px;" />`;
-        qrModal.classList.add('active');
+        // Most compatible UPI intent link
+        return `upi://pay?pa=${UPI_ID}&pn=${encodedName}&am=${amount}&cu=${CURRENCY}&tn=${encodedNote}&mc=0000`;
     }
 
-    // Event listeners for card options
-    option150.addEventListener('click', () => {
-        setSelectedAmount(150, 5000);
-    });
-    option200.addEventListener('click', () => {
-        setSelectedAmount(200, 4800);
-    });
+    // Try to open UPI app, fallback to QR code if fails
+    function openUpiApp(amount) {
+        const upiUrl = getUPIIntentURL(amount);
+        
+        // Create invisible iframe or try window.location
+        // Most reliable: create a temporary link click
+        const tempAnchor = document.createElement('a');
+        tempAnchor.href = upiUrl;
+        tempAnchor.style.display = 'none';
+        document.body.appendChild(tempAnchor);
+        tempAnchor.click();
+        document.body.removeChild(tempAnchor);
+        
+        // Fallback: if app not opened within 2 seconds, show QR / alternative
+        setTimeout(() => {
+            showToast("⚠️ No UPI app found? Use QR code backup", 4000);
+            // Show QR modal as backup
+            showQRBackup(amount);
+        }, 1800);
+    }
 
+    // Backup QR modal (if app not installed)
+    function showQRBackup(amount) {
+        // Create modal dynamically if needed
+        let qrModal = document.getElementById('backupQrModal');
+        if(!qrModal) {
+            const modalDiv = document.createElement('div');
+            modalDiv.id = 'backupQrModal';
+            modalDiv.style.cssText = `
+                position: fixed; top:0; left:0; width:100%; height:100%;
+                background: rgba(0,0,0,0.9); backdrop-filter: blur(10px);
+                display: flex; align-items: center; justify-content: center;
+                z-index: 10000; visibility: hidden; opacity:0; transition:0.2s;
+            `;
+            modalDiv.innerHTML = `
+                <div style="background: white; border-radius: 48px; padding: 28px; max-width: 340px; text-align: center;">
+                    <div style="font-weight:800; font-size:24px;">📱 Scan & Pay</div>
+                    <div id="backupQrAmount" style="font-size:28px; margin:12px 0; font-weight:800;"></div>
+                    <div id="backupQrImg">Loading QR...</div>
+                    <button id="closeBackupQr" style="margin-top:20px; background:#1e1f2c; color:white; padding:12px 24px; border:none; border-radius:40px; width:100%; font-weight:600;">Close</button>
+                </div>
+            `;
+            document.body.appendChild(modalDiv);
+            qrModal = modalDiv;
+            
+            document.getElementById('closeBackupQr').addEventListener('click', () => {
+                qrModal.style.visibility = 'hidden';
+                qrModal.style.opacity = '0';
+            });
+        }
+        
+        const upiLink = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(MERCHANT_NAME)}&am=${amount}&cu=${CURRENCY}`;
+        const qrUrl = `https://quickchart.io/qr?text=${encodeURIComponent(upiLink)}&size=260&margin=2`;
+        
+        document.getElementById('backupQrAmount').innerText = `₱${amount}`;
+        const qrContainer = document.getElementById('backupQrImg');
+        qrContainer.innerHTML = `<img src="${qrUrl}" style="width:100%; max-width:240px; border-radius:24px;" alt="UPI QR" />`;
+        
+        qrModal.style.visibility = 'visible';
+        qrModal.style.opacity = '1';
+    }
+
+    // Handle buy click
+    function handleBuy() {
+        const amount = currentAmount;
+        // First show toast confirming
+        showToast(`🔄 Opening UPI app for ₱${amount}...`, 1500);
+        // Directly open UPI intent
+        openUpiApp(amount);
+    }
+
+    // Event listeners
+    option150.addEventListener('click', () => setSelectedAmount(150, 5000));
+    option200.addEventListener('click', () => setSelectedAmount(200, 4800));
     buyBtn.addEventListener('click', handleBuy);
 
-    closeQrBtn.addEventListener('click', () => {
-        qrModal.classList.remove('active');
-    });
-
-    // Close modal if background click
-    qrModal.addEventListener('click', (e) => {
-        if(e.target === qrModal) {
-            qrModal.classList.remove('active');
-        }
-    });
-
-    // Initial active state
+    // Initialize
     setSelectedAmount(150, 5000);
-
-    // Extra: mobile consistency & no fake card generation.
-    console.log("Legit UPI payment ready — QR amount dynamic");
 </script>
 </body>
 </html>
