@@ -96,7 +96,7 @@
             50% { transform: translateX(30%) skewX(-10deg); opacity: 0.6; }
         }
 
-        /* Moon */
+        /* ========== MOON ANIMATION ========== */
         .moon {
             position: fixed;
             top: 5%;
@@ -114,7 +114,7 @@
             50% { box-shadow: 0 0 35px rgba(255, 230, 150, 0.9); transform: scale(1.02); }
         }
 
-        /* Stars Background */
+        /* ========== STARS BACKGROUND ========== */
         .star {
             position: fixed;
             background: white;
@@ -127,70 +127,78 @@
             50% { opacity: 1; }
         }
 
-        /* ========== STICKERS CONTAINER WITH BOX ========== */
-        .stickers-container {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 15px;
-            background: rgba(0, 0, 0, 0.5);
-            backdrop-filter: blur(10px);
-            padding: 12px 25px;
-            border-radius: 60px;
-            border: 1px solid rgba(255, 215, 0, 0.4);
-            z-index: 100;
-            animation: boxGlow 2s ease-in-out infinite;
-        }
-        @keyframes boxGlow {
-            0%, 100% { box-shadow: 0 0 10px rgba(255, 215, 0, 0.3); border-color: rgba(255, 215, 0, 0.4); }
-            50% { box-shadow: 0 0 25px rgba(255, 215, 0, 0.6); border-color: rgba(255, 215, 0, 0.8); }
-        }
-
-        /* Star Stickers in Box */
+        /* ========== 🌠 STAR STICKERS (NICHE SIDE) ========== */
         .star-sticker {
-            font-size: 28px;
-            animation: starSpin 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 5px #ffd700);
-            cursor: pointer;
-            transition: transform 0.2s;
-        }
-        .star-sticker:hover {
-            transform: scale(1.2);
+            position: fixed;
+            bottom: 5%;
+            left: 5%;
+            font-size: 45px;
+            animation: starSpin 4s ease-in-out infinite;
+            z-index: 1;
+            filter: drop-shadow(0 0 10px #ffd700);
         }
         @keyframes starSpin {
             0%, 100% { transform: rotate(0deg) scale(1); }
             50% { transform: rotate(10deg) scale(1.1); }
         }
 
-        /* Bubble Stickers in Box */
-        .bubble-sticker {
-            font-size: 28px;
-            animation: bubbleBounce 3s ease-in-out infinite;
-            filter: drop-shadow(0 0 5px #88ccff);
-            cursor: pointer;
-            transition: transform 0.2s;
+        .star-sticker-2 {
+            position: fixed;
+            bottom: 8%;
+            right: 8%;
+            font-size: 35px;
+            animation: starSpin2 5s ease-in-out infinite;
+            z-index: 1;
+            filter: drop-shadow(0 0 8px #ffd700);
         }
-        .bubble-sticker:hover {
-            transform: scale(1.15);
-        }
-        @keyframes bubbleBounce {
-            0%, 100% { transform: translateY(0px) scale(1); }
-            50% { transform: translateY(-8px) scale(1.08); }
+        @keyframes starSpin2 {
+            0%, 100% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(-8deg) scale(1.08); }
         }
 
-        /* Divider Line */
-        .divider-line {
-            width: 2px;
-            height: 35px;
-            background: linear-gradient(180deg, #ffd700, #ff6b35, #ffd700);
-            margin: 0 5px;
-            animation: linePulse 1.5s ease-in-out infinite;
+        /* ========== 🫧 BUBBLE STICKERS (UPAR SIDE) ========== */
+        .bubble-sticker {
+            position: fixed;
+            top: 8%;
+            left: 3%;
+            font-size: 40px;
+            animation: bubbleFloat 3s ease-in-out infinite;
+            z-index: 1;
+            filter: drop-shadow(0 0 5px #88ccff);
         }
-        @keyframes linePulse {
-            0%, 100% { opacity: 0.4; height: 25px; }
-            50% { opacity: 1; height: 35px; }
+        @keyframes bubbleFloat {
+            0%, 100% { transform: translateY(0px); opacity: 0.7; }
+            50% { transform: translateY(-10px); opacity: 1; }
+        }
+
+        .bubble-sticker-2 {
+            position: fixed;
+            top: 12%;
+            right: 12%;
+            font-size: 30px;
+            animation: bubbleFloat2 4s ease-in-out infinite;
+            z-index: 1;
+            filter: drop-shadow(0 0 5px #88ccff);
+        }
+        @keyframes bubbleFloat2 {
+            0%, 100% { transform: translateY(0px); opacity: 0.6; }
+            50% { transform: translateY(-8px); opacity: 1; }
+        }
+
+        /* ========== FLOATING PARTICLES ========== */
+        .particle {
+            position: fixed;
+            background: radial-gradient(circle, #ffd700, #ff8c00);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: floatUp 6s ease-in-out infinite;
+            z-index: 0;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 0; }
+            20% { opacity: 0.6; }
+            80% { opacity: 0.3; }
+            100% { transform: translateY(-150px) scale(0); opacity: 0; }
         }
 
         /* ========== MAIN CARD ========== */
@@ -222,24 +230,17 @@
             flex-direction: column;
         }
 
-        /* BestCheat Text - Colour Changing Animation */
         .godx {
-            font-size: 14px;
-            letter-spacing: 2px;
+            font-size: 12px;
+            letter-spacing: 1px;
+            color: #ffdfaa;
             font-weight: 900;
             text-transform: uppercase;
-            text-align: center;
-            padding: 10px 20px;
-            background: linear-gradient(90deg, #ffd700, #ff6b35, #ff00ff, #00ffff, #ffd700);
-            background-size: 300% 100%;
+            background: linear-gradient(135deg, #ffdfaa, #ffb347);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
-            animation: colorChange 3s linear infinite;
-        }
-        @keyframes colorChange {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
+            text-align: center;
         }
 
         .premium-tag {
@@ -251,11 +252,6 @@
             color: #0a0a19;
             text-align: center;
             display: inline-block;
-            animation: tagPulse 1.5s infinite;
-        }
-        @keyframes tagPulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 0 0 8px rgba(255, 215, 0, 0); }
         }
 
         .main-title {
@@ -267,11 +263,6 @@
             color: transparent;
             margin-bottom: 8px;
             text-align: center;
-            animation: titleGlow 2s ease-in-out infinite;
-        }
-        @keyframes titleGlow {
-            0%, 100% { filter: drop-shadow(0 0 5px #ffd700); }
-            50% { filter: drop-shadow(0 0 15px #ff6b35); }
         }
 
         .sub {
@@ -423,7 +414,7 @@
 
         .toast-msg {
             position: fixed;
-            bottom: 100px;
+            bottom: 30px;
             left: 50%;
             transform: translateX(-50%);
             background: linear-gradient(135deg, #ffd700, #ff8c00);
@@ -436,32 +427,16 @@
             display: none;
         }
 
-        /* Floating Particles */
-        .particle {
-            position: fixed;
-            background: radial-gradient(circle, #ffd700, #ff8c00);
-            border-radius: 50%;
-            pointer-events: none;
-            animation: floatUp 6s ease-in-out infinite;
-            z-index: 0;
-        }
-        @keyframes floatUp {
-            0% { transform: translateY(0) scale(1); opacity: 0; }
-            20% { opacity: 0.6; }
-            80% { opacity: 0.3; }
-            100% { transform: translateY(-150px) scale(0); opacity: 0; }
-        }
-
         @media (max-width: 550px) {
             .terminal-card { padding: 20px 18px 28px; }
             .card-number { font-size: 18px; }
             .main-title { font-size: 26px; }
             .moon { width: 50px; height: 50px; top: 3%; right: 3%; }
             .sun-glow { width: 80px; height: 80px; }
-            .stickers-container { padding: 8px 18px; gap: 10px; bottom: 15px; }
-            .star-sticker, .bubble-sticker { font-size: 22px; }
-            .divider-line { height: 25px; }
-            .toast-msg { bottom: 85px; }
+            .star-sticker { font-size: 30px; bottom: 3%; left: 3%; }
+            .star-sticker-2 { font-size: 25px; bottom: 5%; right: 5%; }
+            .bubble-sticker { font-size: 30px; top: 5%; left: 2%; }
+            .bubble-sticker-2 { font-size: 25px; top: 8%; right: 8%; }
         }
     </style>
 </head>
@@ -477,25 +452,13 @@
 <!-- Moon -->
 <div class="moon"></div>
 
-<!-- ========== STICKERS IN BOX WITH LINE ========== -->
-<div class="stickers-container">
-    <!-- Star Stickers -->
-    <div class="star-sticker">🌠</div>
-    <div class="star-sticker">⭐</div>
-    <div class="star-sticker">🌟</div>
-    <div class="star-sticker">✨</div>
-    <div class="star-sticker">💫</div>
-    
-    <!-- Divider Line -->
-    <div class="divider-line"></div>
-    
-    <!-- Bubble Stickers -->
-    <div class="bubble-sticker">🫧</div>
-    <div class="bubble-sticker">💧</div>
-    <div class="bubble-sticker">🫧</div>
-    <div class="bubble-sticker">✨</div>
-    <div class="bubble-sticker">💎</div>
-</div>
+<!-- 🌠 Star Stickers (Niche Side) -->
+<div class="star-sticker">🌠</div>
+<div class="star-sticker-2">⭐</div>
+
+<!-- 🫧 Bubble Stickers (Upar Side) -->
+<div class="bubble-sticker">🫧</div>
+<div class="bubble-sticker-2">💧</div>
 
 <!-- Background Stars -->
 <script>
@@ -516,8 +479,7 @@
 <!-- Main Card -->
 <div class="terminal-card">
     <div class="mods-badge">
-        <!-- BestCheat Text - Colour Changing Animation -->
-        <span class="godx">🔥 BESTCHEAT CARD AND PLAY STORE REDEEM CODE SHOP 🔥</span>
+        <span class="godx">🔥 BeStChEat CarD AnD PlaY StoRe ReDeeM CodE ShoP 🔥</span>
         <span class="premium-tag">✦ PREMIUM CARD SHOP ✦</span>
     </div>
     <div class="main-title">VIRTUAL TERMINAL</div>
@@ -558,7 +520,7 @@
 <div id="toastMsg" class="toast-msg"></div>
 
 <script>
-    // Floating Particles
+    // Floating particles
     function createParticle() {
         const particle = document.createElement('div');
         particle.classList.add('particle');
@@ -573,8 +535,8 @@
         setTimeout(() => particle.remove(), 8000);
     }
     
-    setInterval(createParticle, 500);
-    for (let i = 0; i < 20; i++) setTimeout(createParticle, i * 150);
+    setInterval(createParticle, 600);
+    for (let i = 0; i < 15; i++) setTimeout(createParticle, i * 200);
 
     // UPI Configuration
     const UPI_ID = "kartikrawat6266@okhdfcbank";
@@ -627,7 +589,7 @@
         showToast(`🚀 Launching UPI for ₱${currentAmount}... 🚀`, 1500);
         buyBtn.style.transform = 'scale(0.95)';
         setTimeout(() => buyBtn.style.transform = 'scale(1)', 200);
-        for (let i = 0; i < 15; i++) setTimeout(createParticle, i * 30);
+        for (let i = 0; i < 10; i++) setTimeout(createParticle, i * 30);
         openUpiApp(currentAmount);
     }
 
