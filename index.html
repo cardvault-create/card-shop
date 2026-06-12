@@ -175,14 +175,14 @@
             100% { filter: hue-rotate(360deg); }
         }
 
-        /* Header - TEXT CHANGED */
+        /* Header - TEXT BOLD + BIG + ONE LINE */
         .mods-badge {
             display: flex;
             justify-content: space-between;
             align-items: center;
             margin-bottom: 28px;
             animation: slideDown 0.5s ease;
-            flex-wrap: wrap;
+            flex-wrap: nowrap;
             gap: 10px;
         }
         @keyframes slideDown {
@@ -191,22 +191,28 @@
         }
 
         .godx {
-            font-size: 11px;
+            font-size: 13px;
             letter-spacing: 1px;
             color: #ffdfaa;
-            font-weight: 600;
+            font-weight: 900;
             text-transform: uppercase;
             text-shadow: 0 0 10px #ff8c00;
+            white-space: nowrap;
+            background: linear-gradient(135deg, #ffdfaa, #ffb347);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         .premium-tag {
             background: linear-gradient(135deg, #ffd700, #ff8c00);
-            padding: 6px 16px;
+            padding: 8px 18px;
             border-radius: 40px;
-            font-size: 11px;
-            font-weight: 700;
+            font-size: 13px;
+            font-weight: 900;
             color: #0a0a19;
             animation: tagPulse 1.5s infinite;
             white-space: nowrap;
+            letter-spacing: 1px;
         }
         @keyframes tagPulse {
             0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 215, 0, 0.4); }
@@ -438,13 +444,14 @@
             100% { opacity: 1; transform: translateX(-50%) scale(1); }
         }
 
-        @media (max-width: 480px) {
+        @media (max-width: 550px) {
             .terminal-card { padding: 20px 18px 28px; }
             .card-number { font-size: 18px; }
             .main-title { font-size: 26px; }
             .toast-msg { font-size: 12px; white-space: normal; width: 85%; text-align: center; }
-            .godx { font-size: 8px; }
-            .premium-tag { font-size: 9px; padding: 4px 10px; white-space: normal; text-align: center; }
+            .godx { font-size: 8px; white-space: normal; text-align: center; }
+            .premium-tag { font-size: 9px; padding: 5px 10px; white-space: nowrap; }
+            .mods-badge { flex-wrap: wrap; justify-content: center; gap: 8px; }
         }
     </style>
 </head>
